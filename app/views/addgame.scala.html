@@ -1,4 +1,4 @@
-@(booktypes : List[BookType], genres : List[Genre], retailers : List[Retailer], shelves : List[Bookshelf], gametypes : List[GameType], disctypes : List[DiscType], consolenames : List[Console])
+@(gametypes : List[GameType], genres : List[Genre], retailers : List[Retailer], shelves : List[Bookshelf], consolenames : List[Console])
 @doctype.render
 <html lang = "en">
     <head>
@@ -8,28 +8,33 @@
     <body>
         <form method = "POST">
             @helper.CSRF.formField
-            <input type = "text" name = "bookname" placeholder="Book Name">
-            <input type = "number" min = "0.00" step = "0.01">
-            <select name = "booktype">
+            <input type = "text" name = "gamename" placeholder="Book Name" required>
+            <input type = "number" min = "0.00" step = "0.01" name = "gameprice">
+            <select name = "gametype" required>
                 <option selected>(Select a book type)</option>
-                @for(booktype<-booktypes){
-                <option value = "@booktype.getBookTypeId">@booktype.getBookTypeName</option>
+                @for(gametype<-gametypes){
+                <option value = "@gametype.getGameTypeId">@gametype.getGameTypeName</option>
                 }
             </select>
-            <select name = "genre">
+            <select name = "genre" required>
                 <option selected>(Select a genre)</option>
                 @for(genre<-genres){
                 <option value="@genre.getGenreId">@genre.getGenreName</option>
                 }
             </select>
-            <select name = "retailer">
+            <select name = "retailer" required>
                 <option selected>(Select a retailer)</option>
                 @for(retailer<-retailers){
                 <option value="@retailer.getRetailerId">@retailer.getRetailerName</option>
                 }
             </select>
-            <input type = "text" name = "authorname" placeholder="Author Name">
-            <select name = "bookshelf">
+            <select name = "consolename" required>
+                <option selected>(Select a console)</option>
+                @for(consolename<-consolenames){
+                <option value="@consolename.getConsoleId">@consolename.getConsoleName</option>
+                }
+            </select>
+            <select name = "bookshelf" required>
                 <option selected>(Select a bookshelf)</option>
                 @for(shelf<-shelves){
                 <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>

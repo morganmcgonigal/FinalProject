@@ -1,6 +1,8 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
@@ -8,6 +10,7 @@ import java.math.BigDecimal;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
 
     private String bookName;
@@ -20,16 +23,6 @@ public class Book {
     private String retailerName;
     private String authorName;
     private int bookshelfId;
-
-    public Book(String bookName, BigDecimal bookPrice, int bookTypeId, int genreId, int retailerId, String authorName, int bookshelfId) {
-        this.bookName = bookName;
-        this.bookPrice = bookPrice;
-        this.bookTypeId = bookTypeId;
-        this.genreId = genreId;
-        this.retailerId = retailerId;
-        this.authorName = authorName;
-        this.bookshelfId = bookshelfId;
-    }
 
     public int getBookId() {
         return bookId;

@@ -9,5 +9,16 @@ GET     /bookshelf                  controllers.BookshelfController.getBookshelf
 
 GET     /collection/:id             controllers.CollectionController.getCollection(id : Integer)
 
+GET     /addbook                    controllers.CollectionController.getBookAdd
+POST    /addbook                    controllers.CollectionController.postBookAdd
+
+GET     /adddisc                    controllers.CollectionController.getDiscAdd
+POST    /adddisc                    controllers.CollectionController.postDiscAdd
+
+GET     /addgame                    controllers.CollectionController.getGameAdd
+POST    /addgame                    controllers.CollectionController.postGameAdd
+
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
