@@ -1,0 +1,17 @@
+DELETE FROM Genre;
+
+DELETE FROM BookType;
+
+DELETE FROM DiscType;
+
+DELETE FROM GameType;
+
+DELETE FROM Retailer;
+
+DELETE FROM Game;
+
+DELETE FROM Disc;
+
+DELETE FROM Book;
+
+DELETE FROM Bookshelf;

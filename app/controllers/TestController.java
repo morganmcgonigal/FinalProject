@@ -12,33 +12,28 @@ import javax.inject.Inject;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class TestController extends Controller
-{
+public class TestController extends Controller {
     private FormFactory formFactory;
     private JPAApi db;
 
     @Inject
-    public TestController(FormFactory formFactory, JPAApi db)
-    {
+    public TestController(FormFactory formFactory, JPAApi db) {
         this.formFactory = formFactory;
         this.db = db;
     }
 
-    public Result getTest()
-    {
+    public Result getTest() {
         return ok(views.html.test.render("Test Text"));
     }
 
-    public Result postTest()
-    {
+    public Result postTest() {
         DynamicForm form = formFactory.form().bindFromRequest();
         String test = form.get("test");
         return ok(views.html.test.render(test));
     }
 
     @Transactional(readOnly = true)
-    public Result getTestDb()
-    {
+    public Result getTestDb() {
         String sql = "SELECT t FROM Test t";
         TypedQuery query = db.em().createQuery(sql, Test.class);
         List<Test> test = query.getResultList();
@@ -47,8 +42,7 @@ public class TestController extends Controller
     }
 
     @Transactional
-    public Result postTestDb()
-    {
+    public Result postTestDb() {
         DynamicForm form = formFactory.form().bindFromRequest();
         String testName = form.get("test");
         Test test = new Test();

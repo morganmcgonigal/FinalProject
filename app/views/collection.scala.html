@@ -1,0 +1,78 @@
+@(books : List[BookDetail], games : List[GameDetail], discs : List[DiscDetail])
+@doctype.render
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Collection</title>
+        <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+        <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body class = "bg-secondary">
+
+        <nav class="navbar navbar-expand-lg text-light bg-dark mb-4">
+            <a class="navbar-brand text-white" href="/">Navigation</a>
+        </nav>
+
+        <div class = "container">
+            <table class = "table table-hover table-dark table-striped">
+                <tr>
+                    <th class = "bg-info">Book Title</th>
+                    <th class = "bg-info">Price</th>
+                    <th class = "bg-info">Book Type</th>
+                    <th class = "bg-info">Genre</th>
+                    <th class = "bg-info">Retailer</th>
+                    <th class = "bg-info">Author</th>
+                </tr>
+                @for(book<-books){
+                <tr>
+                    <td>@book.getBookName</td>
+                    <td>@book.getFormattedBookPrice</td>
+                    <td>@book.getBookTypeName</td>
+                    <td>@book.getGenreName</td>
+                    <td>@book.getRetailerName</td>
+                    <td>@book.getAuthorName</td>
+                </tr>
+                }
+
+                <tr>
+                    <th class = "bg-info">Game Title</th>
+                    <th class = "bg-info">Price</th>
+                    <th class = "bg-info">Game Type</th>
+                    <th class = "bg-info">Genre</th>
+                    <th class = "bg-info">Retailer</th>
+                    <th class = "bg-info">Console</th>
+                </tr>
+                @for(game<-games){
+                <tr>
+                    <td>@game.getGameName</td>
+                    <td>@game.getFormattedGamePrice</td>
+                    <td>@game.getGameTypeName</td>
+                    <td>@game.getGenreName</td>
+                    <td>@game.getRetailerName</td>
+                    <td>@game.getConsoleName</td>
+                </tr>
+                }
+
+                <tr>
+                    <th class = "bg-info">Disc Title</th>
+                    <th class = "bg-info">Price</th>
+                    <th class = "bg-info">Disc Type</th>
+                    <th class = "bg-info">Genre</th>
+                    <th class = "bg-info">Retailer</th>
+                    <th class = "bg-info">Artist</th>
+                </tr>
+                @for(disc<-discs){
+                <tr>
+                    <td>@disc.getDiscName</td>
+                    <td>@disc.getFormattedDiscPrice</td>
+                    <td>@disc.getDiscTypeName</td>
+                    <td>@disc.getGenreName</td>
+                    <td>@disc.getRetailerName</td>
+                    <td>@disc.getArtistName</td>
+                </tr>
+                }
+            </table>
+        </div>
+        <!--ADD IN ALL MEDIA TYPES HERE FOR A FULL VIEW OF ALL MEDIA IN A CERTAIN BOOKSHELF-->
+    </body>
+</html>

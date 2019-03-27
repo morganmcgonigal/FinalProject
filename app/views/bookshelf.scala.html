@@ -1,0 +1,19 @@
+@(collections : List[Bookshelf])
+@doctype.render
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Collection</title>
+    </head>
+    <body>
+        <table>
+            @for(collection<-collections){
+            <tr>
+                <td>@collection.getBookshelfId</td>
+                <td>@collection.getBookshelfName</td>
+            </tr>
+            }
+        </table>
+        <!--ADD IN ALL MEDIA TYPES HERE FOR A FULL VIEW OF ALL MEDIA IN A CERTAIN BOOKSHELF-->
+    </body>
+</html>
