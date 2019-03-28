@@ -265,48 +265,48 @@
    </folder>
   </table>
   <relationships>
-   <relationship id="REL69" populated="true" UUID="c1094157-fe53-4167-bc0a-0d952bf35e09" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="Bookshelf_Book_fk" physicalName="Bookshelf_Book_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+   <relationship id="REL69" populated="true" UUID="c1094157-fe53-4167-bc0a-0d952bf35e09" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="Bookshelf_Book_fk" physicalName="bookshelf_book_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP70" populated="true" UUID="d94dc890-e3ab-46e8-ad46-942ab2b15957" fk-column-ref="COL14" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL71" populated="true" UUID="f8812ea4-dbcd-4494-b83f-5fd53c626ef8" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Bookshelf_Game_fk" physicalName="Bookshelf_Game_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+   <relationship id="REL71" populated="true" UUID="f8812ea4-dbcd-4494-b83f-5fd53c626ef8" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Bookshelf_Game_fk" physicalName="bookshelf_game_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP72" populated="true" UUID="30eaddd3-a43e-449f-8aa2-9fcd33be53f7" fk-column-ref="COL24" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL73" populated="true" UUID="46ccd059-9c87-47c5-b8fb-72cdeee31b9a" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Bookshelf_Disc_fk" physicalName="Bookshelf_Disc_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+   <relationship id="REL73" populated="true" UUID="46ccd059-9c87-47c5-b8fb-72cdeee31b9a" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Bookshelf_Disc_fk" physicalName="bookshelf_disc_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP74" populated="true" UUID="5264bd20-fde6-4091-8b15-b6b7a47982a0" fk-column-ref="COL35" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL75" populated="true" UUID="4b6eec56-5d4d-4734-9c37-958b8b57ed9a" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="GameType_Game_fk" physicalName="GameType_Game_fk" pk-table-ref="TAB39" pkCardinality="2" updateRule="3" >
+   <relationship id="REL75" populated="true" UUID="4b6eec56-5d4d-4734-9c37-958b8b57ed9a" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="GameType_Game_fk" physicalName="gametype_game_fk" pk-table-ref="TAB39" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP76" populated="true" UUID="f1ec9100-e060-4f8c-a106-1a131685ab90" fk-column-ref="COL21" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL40" />
    </relationship>
-   <relationship id="REL77" populated="true" UUID="d929786e-a853-47fb-b45b-0254d3af27c9" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="DiscType_Disc_fk" physicalName="DiscType_Disc_fk" pk-table-ref="TAB44" pkCardinality="2" updateRule="3" >
+   <relationship id="REL77" populated="true" UUID="d929786e-a853-47fb-b45b-0254d3af27c9" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="DiscType_Disc_fk" physicalName="disctype_disc_fk" pk-table-ref="TAB44" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP78" populated="true" UUID="39a451b5-3167-44b8-a26b-360f7ed89ede" fk-column-ref="COL32" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL45" />
    </relationship>
-   <relationship id="REL79" populated="true" UUID="21ee04e0-b08b-442f-9c33-a603f2225165" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="BookType_Book_fk" physicalName="BookType_Book_fk" pk-table-ref="TAB49" pkCardinality="2" updateRule="3" >
+   <relationship id="REL79" populated="true" UUID="21ee04e0-b08b-442f-9c33-a603f2225165" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="BookType_Book_fk" physicalName="booktype_book_fk" pk-table-ref="TAB49" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP80" populated="true" UUID="8e8664bd-b294-4bc7-a930-3069ee1013ae" fk-column-ref="COL10" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL50" />
    </relationship>
-   <relationship id="REL81" populated="true" UUID="6c9a1018-669c-4fde-ae10-1ea36a743b0f" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Genre_Disc_fk" physicalName="Genre_Disc_fk" pk-table-ref="TAB54" pkCardinality="2" updateRule="3" >
+   <relationship id="REL81" populated="true" UUID="6c9a1018-669c-4fde-ae10-1ea36a743b0f" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Genre_Disc_fk" physicalName="genre_disc_fk" pk-table-ref="TAB54" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP82" populated="true" UUID="5f6d7b65-7dd8-4ed9-86a8-36cec87498c0" fk-column-ref="COL33" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL55" />
    </relationship>
-   <relationship id="REL83" populated="true" UUID="cd7f1351-2bf3-43ad-8265-8cc6764e7e7b" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="Genre_Book_fk" physicalName="Genre_Book_fk" pk-table-ref="TAB54" pkCardinality="2" updateRule="3" >
+   <relationship id="REL83" populated="true" UUID="cd7f1351-2bf3-43ad-8265-8cc6764e7e7b" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="Genre_Book_fk" physicalName="genre_book_fk" pk-table-ref="TAB54" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP84" populated="true" UUID="3dfe8cc5-e62e-4993-af6c-52162fb56635" fk-column-ref="COL11" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL55" />
    </relationship>
-   <relationship id="REL85" populated="true" UUID="da5e049c-a01e-49c4-b046-d93fa4060539" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Genre_Game_fk" physicalName="Genre_Game_fk" pk-table-ref="TAB54" pkCardinality="2" updateRule="3" >
+   <relationship id="REL85" populated="true" UUID="da5e049c-a01e-49c4-b046-d93fa4060539" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Genre_Game_fk" physicalName="genre_game_fk" pk-table-ref="TAB54" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP86" populated="true" UUID="51beca13-7e27-4dc4-bc3b-f9bb17d5410b" fk-column-ref="COL22" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL55" />
    </relationship>
-   <relationship id="REL87" populated="true" UUID="d1589548-352c-42c9-8c5e-32225082c2bb" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Retailer_Game_fk" physicalName="Retailer_Game_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
+   <relationship id="REL87" populated="true" UUID="d1589548-352c-42c9-8c5e-32225082c2bb" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Retailer_Game_fk" physicalName="retailer_game_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP88" populated="true" UUID="b065e737-685d-412b-a015-62638ba968b0" fk-column-ref="COL23" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL60" />
    </relationship>
-   <relationship id="REL89" populated="true" UUID="52491b2d-9ef9-44e7-a0a1-673b24ed2e56" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Retailer_Disc_fk" physicalName="Retailer_Disc_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
+   <relationship id="REL89" populated="true" UUID="52491b2d-9ef9-44e7-a0a1-673b24ed2e56" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Retailer_Disc_fk" physicalName="retailer_disc_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP90" populated="true" UUID="49477a10-4fd0-4641-8694-12aa3d949b9b" fk-column-ref="COL34" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL60" />
    </relationship>
-   <relationship id="REL91" populated="true" UUID="564da464-4d8d-4eeb-8c22-f54b8d7d5a67" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="Retailer_Book_fk" physicalName="Retailer_Book_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
+   <relationship id="REL91" populated="true" UUID="564da464-4d8d-4eeb-8c22-f54b8d7d5a67" deferrability="7" deleteRule="3" fk-table-ref="TAB6" fkCardinality="7" identifying="false" name="Retailer_Book_fk" physicalName="retailer_book_fk" pk-table-ref="TAB59" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP92" populated="true" UUID="8c308f72-98ce-4aff-b355-4dcf6c544e4f" fk-column-ref="COL12" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL60" />
    </relationship>
-   <relationship id="REL93" populated="true" UUID="ddc45554-0f21-4bd0-bd72-ec3101d3f4d5" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Console_Game_fk" physicalName="Console_Game_fk" pk-table-ref="TAB64" pkCardinality="2" updateRule="3" >
+   <relationship id="REL93" populated="true" UUID="ddc45554-0f21-4bd0-bd72-ec3101d3f4d5" deferrability="7" deleteRule="3" fk-table-ref="TAB17" fkCardinality="7" identifying="false" name="Console_Game_fk" physicalName="console_game_fk" pk-table-ref="TAB64" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP94" populated="true" UUID="c6537267-1f0c-428a-9e0b-ec56c80f6c39" fk-column-ref="COL25" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL65" />
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="true"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.MySqlDDLGenerator" allow-connection="false"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">

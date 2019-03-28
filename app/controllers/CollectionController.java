@@ -7,15 +7,11 @@ import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.Proxy;
 
 import javax.inject.Inject;
 import javax.persistence.TypedQuery;
-import java.io.Console;
 import java.math.BigDecimal;
 import java.util.List;
-
-import static play.mvc.Results.ok;
 
 public class CollectionController extends Controller {
 
@@ -119,8 +115,29 @@ public class CollectionController extends Controller {
         books.setRetailerId(retailerId);
         books.setAuthorName(authorName);
         books.setBookshelfId(bookshelfId);
+        db.em().persist(books);
 
-        return ok("Saved");
+        TypedQuery<BookType> bookTypeQuery = db.em().createQuery(
+                "SELECT bt FROM BookType bt ORDER BY bookTypeId",
+                BookType.class);
+        List<BookType> bookTypes = bookTypeQuery.getResultList();
+
+        TypedQuery<Genre> genreQuery = db.em().createQuery(
+                "SELECT g FROM Genre g ORDER BY genreId",
+                Genre.class);
+        List<Genre> genres = genreQuery.getResultList();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r ORDER BY retailerId",
+                Retailer.class);
+        List<Retailer> retailers = retailerQuery.getResultList();
+
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        return ok(views.html.addbook.render(bookTypes, genres, retailers, bookshelves));
 
     }
 
@@ -175,8 +192,29 @@ public class CollectionController extends Controller {
         discs.setRetailerId(retailerId);
         discs.setBookshelfId(bookshelfId);
         discs.setArtistName(artistName);
+        db.em().persist(discs);
 
-        return ok("Saved");
+        TypedQuery<Genre> genreQuery = db.em().createQuery(
+                "SELECT g FROM Genre g ORDER BY genreId",
+                Genre.class);
+        List<Genre> genres = genreQuery.getResultList();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r ORDER BY retailerId",
+                Retailer.class);
+        List<Retailer> retailers = retailerQuery.getResultList();
+
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        TypedQuery<DiscType> discTypeQuery = db.em().createQuery(
+                "SELECT dt FROM DiscType dt ORDER BY discTypeId",
+                DiscType.class);
+        List<DiscType> discTypes = discTypeQuery.getResultList();
+
+        return ok(views.html.adddisc.render(discTypes, genres, retailers, bookshelves));
 
     }
 
@@ -237,7 +275,33 @@ public class CollectionController extends Controller {
         games.setRetailerId(retailerId);
         games.setBookshelfId(bookshelfId);
         games.setConsoleId(consoleId);
+        db.em().persist(games);
 
-        return ok("Saved");
+        TypedQuery<Genre> genreQuery = db.em().createQuery(
+                "SELECT g FROM Genre g ORDER BY genreId",
+                Genre.class);
+        List<Genre> genres = genreQuery.getResultList();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r ORDER BY retailerId",
+                Retailer.class);
+        List<Retailer> retailers = retailerQuery.getResultList();
+
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        TypedQuery<GameType> gameTypeQuery = db.em().createQuery(
+                "SELECT gt FROM GameType gt ORDER BY gameTypeId",
+                GameType.class);
+        List<GameType> gameTypes = gameTypeQuery.getResultList();
+
+        TypedQuery<models.Console> consoleQuery = db.em().createQuery(
+                "SELECT c FROM Console c ORDER BY consoleId",
+                models.Console.class);
+        List<models.Console> consoles = consoleQuery.getResultList();
+
+        return ok(views.html.addgame.render(gameTypes, genres, retailers, bookshelves, consoles));
     }
 }

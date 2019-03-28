@@ -9,9 +9,9 @@
         <form method = "POST">
             @helper.CSRF.formField
             <input type = "text" name = "discname" placeholder="Disc Name" required>
-            <input type = "number" min = "0.00" step = "0.01" name = "discprice" required>
+            <input type = "number" min = "0.00" step = "0.01" name = "discprice" placeholder="Price" required>
             <select name = "disctype" required>
-                <option selected>(Select a book type)</option>
+                <option selected>(Select a disc type)</option>
                 @for(disctype<-disctypes){
                 <option value = "@disctype.getDiscTypeId">@disctype.getDiscTypeName</option>
                 }
@@ -28,13 +28,14 @@
                 <option value="@retailer.getRetailerId">@retailer.getRetailerName</option>
                 }
             </select>
-            <input type = "text" name = "authorname" placeholder="Author Name" required>
+            <input type = "text" name = "artistname" placeholder="Artist Name" required>
             <select name = "bookshelf" required>
                 <option selected>(Select a bookshelf)</option>
                 @for(shelf<-shelves){
                 <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>
                 }
             </select>
+            <input type = "submit" class = "btn btn-info btn-block" value = "Save">
         </form>
     </body>
 </html>

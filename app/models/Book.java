@@ -16,11 +16,8 @@ public class Book {
     private String bookName;
     private BigDecimal bookPrice;
     private int bookTypeId;
-    private String bookTypeName;
     private int genreId;
-    private String genreName;
     private int retailerId;
-    private String retailerName;
     private String authorName;
     private int bookshelfId;
 
