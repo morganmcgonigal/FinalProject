@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 @Entity
 public class Album {
@@ -46,6 +47,10 @@ public class Album {
 
     public BigDecimal getAlbumPrice() {
         return albumPrice;
+    }
+
+    public String getFormattedAlbumPrice(){
+        return NumberFormat.getCurrencyInstance().format(albumPrice);
     }
 
     public void setAlbumPrice(BigDecimal albumPrice) {

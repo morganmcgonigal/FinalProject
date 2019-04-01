@@ -1,0 +1,25 @@
+@(album : Album, albumGenre : AlbumGenre, retailer : Retailer)
+@doctype.render
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>@album.getAlbumName</td>
+                <td>@album.getFormattedAlbumPrice</td>
+                <td>@albumGenre.getGenreName</td>
+                <td>@retailer.getRetailerName</td>
+                <td>@album.getArtistName</td>
+                <td>
+                    <button type = "button" class = "btn btn-outline-info"><a href = "/updatealbum/@album.getAlbumId">Edit</a></button>
+                </td>
+                <td>
+                    <button type = "button" class = "btn btn-outline-info"><a href = "/deletealbum/@album.getAlbumId">Delete</a></button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

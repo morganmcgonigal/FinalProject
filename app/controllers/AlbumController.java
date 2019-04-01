@@ -133,4 +133,27 @@ public class AlbumController extends Controller {
 
         return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
     }
+
+    @Transactional (readOnly = true)
+    public Result getAlbum(int albumId){
+        TypedQuery<Album> albumQuery = db.em().createQuery(
+                "SELECT a FROM Album a WHERE albumId = :albumId",
+                Album.class);
+        albumQuery.setParameter("albumId", albumId);
+        Album album = albumQuery.getSingleResult();
+
+        TypedQuery<AlbumGenre> albumGenreQuery = db.em().createQuery(
+                "SELECT ag FROM AlbumGenre ag WHERE albumGenreId = :albumGenreId",
+                AlbumGenre.class);
+        albumGenreQuery.setParameter("albumGenreId", album.getAlbumGenreId());
+        AlbumGenre albumGenre = albumGenreQuery.getSingleResult();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r WHERE retailerId = :retailerId",
+                Retailer.class);
+        retailerQuery.setParameter("retailerId", album.getRetailerId());
+        Retailer retailer = retailerQuery.getSingleResult();
+
+        return ok(views.html.album.render(album, albumGenre, retailer));
+    }
 }

@@ -139,4 +139,32 @@ public class BookController extends Controller {
 
         return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
     }
+
+    @Transactional(readOnly = true)
+    public Result getBook(int bookId) {
+        TypedQuery<Book> bookQuery = db.em().createQuery(
+                "SELECT b FROM Book b WHERE bookId = :bookId", Book.class);
+        bookQuery.setParameter("bookId", bookId);
+        Book book = bookQuery.getSingleResult();
+
+        TypedQuery<BookType> bookTypeQuery = db.em().createQuery(
+                "SELECT bt FROM BookType bt WHERE bookTypeId = :bookTypeId",
+                BookType.class);
+        bookTypeQuery.setParameter("bookTypeId", book.getBookTypeId());
+        BookType bookType = bookTypeQuery.getSingleResult();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r WHERE retailerId = :retailerId",
+                Retailer.class);
+        retailerQuery.setParameter("retailerId", book.getRetailerId());
+        Retailer retailer = retailerQuery.getSingleResult();
+
+        TypedQuery<BookGenre> bookGenreQuery = db.em().createQuery(
+                "SELECT bg FROM BookGenre bg WHERE bookGenreId = :bookGenreId",
+                BookGenre.class);
+        bookGenreQuery.setParameter("bookGenreId", book.getBookGenreId());
+        BookGenre bookGenre = bookGenreQuery.getSingleResult();
+
+        return ok(views.html.book.render(book, bookType, retailer, bookGenre));
+    }
 }

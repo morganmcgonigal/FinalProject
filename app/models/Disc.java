@@ -43,6 +43,10 @@ public class Disc {
         this.discPrice = discPrice;
     }
 
+    public String getFormattedDiscPrice(){
+        return NumberFormat.getCurrencyInstance().format(discPrice);
+    }
+
     public int getDiscTypeId() {
         return discTypeId;
     }

@@ -1,0 +1,26 @@
+@(book : Book, bookType : BookType, retailer : Retailer, bookGenre : BookGenre)
+@doctype.render
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>@book.getBookName</td>
+                <td>@book.getFormattedBookPrice</td>
+                <td>@bookType.getBookTypeName</td>
+                <td>@bookGenre.getGenreName</td>
+                <td>@retailer.getRetailerName</td>
+                <td>@book.getAuthorName</td>
+                <td>
+                    <button type = "button" class = "btn btn-outline-info"><a href = "/updatebook/@book.getBookId">Edit</a></button>
+                </td>
+                <td>
+                    <button type = "button" class = "btn btn-outline-info"><a href = "/deletebook/@book.getBookId">Delete</a></button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

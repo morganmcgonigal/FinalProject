@@ -1,0 +1,9 @@
+.bg-info {
+  background-color: #FF5D73 !important;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #FF5D73;
+  border-color: #FF8D9D;
+}

@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 @Entity
 public class Game {
@@ -40,6 +41,10 @@ public class Game {
 
     public void setGamePrice(BigDecimal gamePrice) {
         this.gamePrice = gamePrice;
+    }
+
+    public String getFormattedGamePrice(){
+        return NumberFormat.getCurrencyInstance().format(gamePrice);
     }
 
     public int getGameTypeId() {
