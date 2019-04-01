@@ -16,7 +16,7 @@ public class Book {
     private String bookName;
     private BigDecimal bookPrice;
     private int bookTypeId;
-    private int genreId;
+    private int bookGenreId;
     private int retailerId;
     private String authorName;
     private int bookshelfId;
@@ -53,12 +53,12 @@ public class Book {
         this.bookTypeId = bookTypeId;
     }
 
-    public int getGenreId() {
-        return genreId;
+    public int getBookGenreId() {
+        return bookGenreId;
     }
 
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
+    public void setBookGenreId(int bookGenreId) {
+        this.bookGenreId = bookGenreId;
     }
 
     public int getRetailerId() {

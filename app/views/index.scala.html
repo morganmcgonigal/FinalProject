@@ -2,11 +2,46 @@
 <html lang = "en">
     <head>
         <meta charset = "UTF-8">
-        <title>Collector</title>
+        <title></title>
+        <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+        <script src = "/assets/lib/jquery/jquery.min.js"></script>
+        <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <h1>Index Page</h1>
-        <p>Insert navigation to the other pages and a short blurb about what the application does.</p>
-        <!--ADD SHORT BLURB HERE ABOUT THE WEBPAGE AND INCLUDE LINKS TO EACH PAGE-->
+    <body class = "bg-secondary">
+        <nav id = "main" class = "navbar navbar-expand-lg sticky-top text-light bg-dark mb-4">
+            <a class = "navbar-brand text-white" href = "/">storefully</a>
+        </nav>
+        <div class = "container">
+
+            <h1 class = "display-1 text-light text-center">storefully</h1>
+
+            <div class = "card-group">
+                <div class = "card bg-dark text-light">
+                    <div class = "card-header text-center bg-info">Collections</div>
+                    <div class = "card-body text-center">
+                        <p class = "card-text text-white-50">For a comprehensive list of your media.</p>
+                        <!--<br /><br />-->
+                        <a href = "/collection/1" class = "btn btn-dark btn-block">Currently Owned Media</a>
+
+                        <p class = "card-text text-white-50">For a list of items on your wishlist.</p>
+                        <a href = "/collection/2" class = "btn btn-dark btn-block">Wishlist</a>
+                    </div>
+                </div>
+                <div class = "card bg-dark text-light">
+                    <div class = "card-header text-center bg-info">Add Media</div>
+                    <div class = "card-body text-center">
+                        <p class = "card-text text-white-50">To add a new book to your collection or wishlist.</p>
+                        <a href = "/addbook" class = "btn btn-dark btn-block">Add a book</a>
+                        <p class = "card-text text-white-50">To add a new disc to your collection or wishlist.</p>
+                        <a href = "/adddisc" class = "btn btn-dark btn-block">Add a disc</a>
+                        <p class = "card-text text-white-50">To add a new game to your collection or wishlist.</p>
+                        <a href = "/addgame" class = "btn btn-dark btn-block">Add a game</a>
+                        <p class = "card-text text-white-50">To add a new album to your collection or wishlist.</p>
+                        <a href = "/addalbum" class = "btn btn-dark btn-block">Add an album</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </body>
 </html>

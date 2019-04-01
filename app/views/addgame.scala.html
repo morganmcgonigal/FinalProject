@@ -1,46 +1,105 @@
-@(gametypes : List[GameType], genres : List[Genre], retailers : List[Retailer], shelves : List[Bookshelf], consolenames : List[Console])
+@(gametypes : List[GameType], genres : List[GameGenre], retailers : List[Retailer], shelves : List[Bookshelf], consolenames : List[Console])
 @doctype.render
 <html lang = "en">
     <head>
         <meta charset = "UTF-8">
         <title>Title</title>
+        <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+        <script src = "/assets/lib/jquery/jquery.min.js"></script>
+        <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <form method = "POST">
-            @helper.CSRF.formField
-            <input type = "text" name = "gamename" placeholder="Book Name" required>
-            <input type = "number" min = "0.00" step = "0.01" name = "gameprice">
-            <select name = "gametype" required>
-                <option selected>(Select a book type)</option>
-                @for(gametype<-gametypes){
-                <option value = "@gametype.getGameTypeId">@gametype.getGameTypeName</option>
-                }
-            </select>
-            <select name = "genre" required>
-                <option selected>(Select a genre)</option>
-                @for(genre<-genres){
-                <option value="@genre.getGenreId">@genre.getGenreName</option>
-                }
-            </select>
-            <select name = "retailer" required>
-                <option selected>(Select a retailer)</option>
-                @for(retailer<-retailers){
-                <option value="@retailer.getRetailerId">@retailer.getRetailerName</option>
-                }
-            </select>
-            <select name = "consolename" required>
-                <option selected>(Select a console)</option>
-                @for(consolename<-consolenames){
-                <option value="@consolename.getConsoleId">@consolename.getConsoleName</option>
-                }
-            </select>
-            <select name = "bookshelf" required>
-                <option selected>(Select a bookshelf)</option>
-                @for(shelf<-shelves){
-                <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>
-                }
-            </select>
-            <input type = "submit" class = "btn btn-info btn-block" value = "Save">
-        </form>
+    <body class = "bg-secondary">
+        <nav id = "main" class = "navbar navbar-expand-lg sticky-top text-light bg-dark mb-4">
+            <a class = "navbar-brand text-white" href = "/">Navigation</a>
+            <!-- Collapsible content -->
+            <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+                <ul class = "navbar-nav">
+
+                    <li class = "nav-item active">
+                        <a class = "nav-link text-light" href = "/">Home</a>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop2" data-toggle="dropdown">
+                            Collections List
+                        </a>
+                        <div class="dropdown-menu bg-dark">
+                            <a class="dropdown-item text-light" href="/collection/1">Currently Own</a>
+                            <a class="dropdown-item text-light" href="/collection/2">Wishlist</a>
+                        </div>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop" data-toggle="dropdown">
+                            Add Media
+                        </a>
+                        <div class="dropdown-menu bg-dark">
+                            <a class="dropdown-item text-light" href="/addbook">Add a Book</a>
+                            <a class="dropdown-item text-light" href="/adddisc">Add a Disc</a>
+                            <a class="dropdown-item text-light" href="/addgame">Add a Game</a>
+                            <a class = "dropdown-item text-light" href = "/addalbum">Add an Album</a>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class = "container">
+            <div class = "form-group">
+                <form method = "POST">
+                    @helper.CSRF.formField
+                    <h1 class = "display-1 text-white text-center">Add a Game</h1>
+                    <div class = "input-group mb-3">
+                        <div class = "input-group-prepend">
+                            <span class = "input-group-text bg-info">General Information</span>
+                        </div>
+                        <input type = "text" name = "gamename" placeholder = "Game Name" required>
+                        <input type = "number" min = "0.00" step = "0.01" name = "gameprice" placeholder="Game Price">
+                        <select name = "gametype" required>
+                            <option selected>(Select a game type)</option>
+                            @for(gametype<-gametypes){
+                            <option value = "@gametype.getGameTypeId">@gametype.getGameTypeName</option>
+                            }
+                        </select>
+                        <select name = "consolename" required>
+                            <option selected>(Select a console)</option>
+                            @for(consolename<-consolenames){
+                            <option value = "@consolename.getConsoleId">@consolename.getConsoleName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class = "input-group mb-3">
+                        <div class = "input-group-prepend">
+                            <span class = "input-group-text bg-info">Details</span>
+                        </div>
+                        <select name = "genre" required>
+                            <option selected>(Select a genre)</option>
+                            @for(genre<-genres){
+                            <option value = "@genre.getGameGenreId">@genre.getGenreName</option>
+                            }
+                        </select>
+                        <select name = "retailer" required>
+                            <option selected>(Select a retailer)</option>
+                            @for(retailer<-retailers){
+                            <option value = "@retailer.getRetailerId">@retailer.getRetailerName</option>
+                            }
+                        </select>
+                        <select name = "bookshelf" required>
+                            <option selected>(Select a bookshelf)</option>
+                            @for(shelf<-shelves){
+                            <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>
+                            }
+                        </select>
+                    </div>
+                    <input type = "submit" class = "btn btn-info btn-block" value = "Save">
+                </form>
+            </div>
+        </div>
     </body>
 </html>

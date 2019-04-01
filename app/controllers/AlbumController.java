@@ -1,5 +1,6 @@
 package controllers;
 
+
 import models.*;
 import play.data.DynamicForm;
 import play.data.FormFactory;
@@ -13,34 +14,30 @@ import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class BookController extends Controller {
-
-    private FormFactory formFactory;
+public class AlbumController extends Controller {
     private JPAApi db;
 
+    private FormFactory formFactory;
+
     @Inject
-    public BookController (FormFactory formFactory, JPAApi db) {
-        this.formFactory = formFactory;
+
+    public AlbumController(JPAApi db, FormFactory formFactory) {
         this.db = db;
+        this.formFactory = formFactory;
     }
 
     @Transactional(readOnly = true)
-    public Result getBookEdit(int bookId){
-        TypedQuery<Book> bookQuery = db.em().createQuery(
-                "SELECT b FROM Book b WHERE bookId = :bookId",
-                Book.class);
-        bookQuery.setParameter("bookId", bookId);
-        Book book = bookQuery.getSingleResult();
+    public Result getAlbumEdit(int albumId){
+        TypedQuery<Album> albumQuery = db.em().createQuery(
+                "SELECT b FROM Album b WHERE albumId = :albumId",
+                Album.class);
+        albumQuery.setParameter("albumId", albumId);
+        Album album = albumQuery.getSingleResult();
 
-        TypedQuery<BookType> bookTypeQuery = db.em().createQuery(
-                "SELECT bt FROM BookType bt ORDER BY bookTypeId",
-                BookType.class);
-        List<BookType> bookTypes = bookTypeQuery.getResultList();
-
-        TypedQuery<BookGenre> bookGenreQuery = db.em().createQuery(
-                "SELECT g FROM BookGenre g ORDER BY bookGenreId",
-                BookGenre.class);
-        List<BookGenre> bookGenres = bookGenreQuery.getResultList();
+        TypedQuery<AlbumGenre> albumGenreQuery = db.em().createQuery(
+                "SELECT g FROM AlbumGenre g ORDER BY albumGenreId",
+                AlbumGenre.class);
+        List<AlbumGenre> albumGenres = albumGenreQuery.getResultList();
 
         TypedQuery<Retailer> retailerQuery = db.em().createQuery(
                 "SELECT r FROM Retailer r ORDER BY retailerId",
@@ -52,40 +49,37 @@ public class BookController extends Controller {
                 Bookshelf.class);
         List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 
-        return ok(views.html.updatebook.render(book, bookTypes, bookGenres, retailers, bookshelves));
+        return ok(views.html.updatealbum.render(album, albumGenres, retailers, bookshelves));
     }
 
     @Transactional
-    public Result postBookEdit(int bookId){
-        TypedQuery<Book> bookQuery = db.em().createQuery(
-                "SELECT b FROM Book b WHERE bookId = :bookId",
-                Book.class);
-        bookQuery.setParameter("bookId", bookId);
-        Book book = bookQuery.getSingleResult();
+    public Result postAlbumEdit(int albumId){
+        TypedQuery<Album> albumQuery = db.em().createQuery(
+                "SELECT b FROM Album b WHERE albumId = :albumId",
+                Album.class);
+        albumQuery.setParameter("albumId", albumId);
+        Album album = albumQuery.getSingleResult();
 
         DynamicForm form = formFactory.form().bindFromRequest();
-        String bookName = form.get("bookname");
-        String sbookPrice = form.get("bookprice");
-        BigDecimal bookPrice = new BigDecimal(sbookPrice);
-        String sbookTypeId = form.get("booktype");
-        int bookTypeId = Integer.parseInt(sbookTypeId);
+        String albumName = form.get("albumname");
+        String salbumPrice = form.get("albumprice");
+        BigDecimal albumPrice = new BigDecimal(salbumPrice);
         String sgenreId = form.get("genre");
         int genreId = Integer.parseInt(sgenreId);
         String sretailerId = form.get("retailer");
         int retailerId = Integer.parseInt(sretailerId);
-        String authorName = form.get("authorname");
+        String artistName = form.get("artistname");
         String sbookshelfId = form.get("bookshelf");
         int bookshelfId = Integer.parseInt(sbookshelfId);
 
-        book.setBookName(bookName);
-        book.setBookPrice(bookPrice);
-        book.setBookTypeId(bookTypeId);
-        book.setBookGenreId(genreId);
-        book.setRetailerId(retailerId);
-        book.setAuthorName(authorName);
-        book.setBookTypeId(bookshelfId);
+        album.setAlbumName(albumName);
+        album.setAlbumPrice(albumPrice);
+        album.setAlbumGenreId(genreId);
+        album.setRetailerId(retailerId);
+        album.setArtistName(artistName);
+        album.setBookshelfId(bookshelfId);
 
-        db.em().persist(book);
+        db.em().persist(album);
 
         TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
                 "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
@@ -98,7 +92,7 @@ public class BookController extends Controller {
                         "b.bookPrice, bt.bookTypeName, g.genreName," +
                         " r.retailerName, b.authorName, b.bookshelfId) " +
                         "FROM Book b " +
-                        "JOIN BookGenre g ON g.genreId = b.genreId " +
+                        "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
                         "JOIN BookType bt ON bt.bookTypeId = b.bookTypeId " +
                         "JOIN Retailer r ON r.retailerId = b.retailerId " +
                         "ORDER BY b.bookName", BookDetail.class);
@@ -110,7 +104,7 @@ public class BookController extends Controller {
                         "r.retailerName, c.consoleName, g.bookshelfId) " +
                         "FROM Game g " +
                         "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
-                        "JOIN GameGenre ge ON ge.genreId = g.genreId " +
+                        "JOIN GameGenre ge ON ge.gameGenreId = g.gameGenreId " +
                         "JOIN Retailer r ON r.retailerId = g.retailerId " +
                         "JOIN Console c ON c.consoleId = g.consoleId " +
                         "ORDER BY g.gameName", GameDetail.class);
@@ -123,7 +117,7 @@ public class BookController extends Controller {
                         "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
-                        "JOIN DiscGenre g ON g.genreId = d.genreId " +
+                        "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
                         "JOIN Retailer r ON r.retailerId = d.retailerId " +
                         "ORDER BY d.discName", DiscDetail.class);
         List<DiscDetail> discs = discDetailQuery.getResultList();

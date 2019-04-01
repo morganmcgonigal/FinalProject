@@ -27,11 +27,12 @@ public class DiscDetail {
     private String genreName;
     private String retailerName;
     private String artistName;
+    private int bookshelfId;
 
     public DiscDetail(int discId, String discName,
                       BigDecimal discPrice, String discTypeName,
                       String genreName, String retailerName,
-                      String artistName) {
+                      String artistName, int bookshelfId) {
         this.discId = discId;
         this.discName = discName;
         this.discPrice = discPrice;
@@ -39,6 +40,7 @@ public class DiscDetail {
         this.genreName = genreName;
         this.retailerName = retailerName;
         this.artistName = artistName;
+        this.bookshelfId = bookshelfId;
     }
 
     public int getDiscId() {
@@ -71,5 +73,9 @@ public class DiscDetail {
 
     public String getArtistName() {
         return artistName;
+    }
+
+    public int getBookshelfId() {
+        return bookshelfId;
     }
 }

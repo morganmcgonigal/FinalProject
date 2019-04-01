@@ -16,6 +16,7 @@ public class BookDetail {
     private String genreName;
     private String retailerName;
     private String authorName;
+    private int bookshelfId;
 
 //                      b.bookId,   b.bookName     "b.bookPrice
 //                       bt.bookTypeName       g.genreName
@@ -23,7 +24,7 @@ public class BookDetail {
 
     public BookDetail(int bookId, String bookName, BigDecimal bookPrice,
                       String bookTypeName, String genreName,
-                      String retailerName, String authorName) {
+                      String retailerName, String authorName, int bookshelfId) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.bookPrice = bookPrice;
@@ -31,6 +32,7 @@ public class BookDetail {
         this.genreName = genreName;
         this.retailerName = retailerName;
         this.authorName = authorName;
+        this.bookshelfId = bookshelfId;
     }
 
     public int getBookId() {
@@ -63,5 +65,9 @@ public class BookDetail {
 
     public String getAuthorName() {
         return authorName;
+    }
+
+    public int getBookshelfId() {
+        return bookshelfId;
     }
 }

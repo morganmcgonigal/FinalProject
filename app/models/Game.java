@@ -13,7 +13,7 @@ public class Game {
     private String gameName;
     private BigDecimal gamePrice;
     private int gameTypeId;
-    private int genreId;
+    private int gameGenreId;
     private int retailerId;
     private int consoleId;
     private int bookshelfId;
@@ -50,12 +50,12 @@ public class Game {
         this.gameTypeId = gameTypeId;
     }
 
-    public int getGenreId() {
-        return genreId;
+    public int getGameGenreId() {
+        return gameGenreId;
     }
 
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
+    public void setGameGenreId(int gameGenreId) {
+        this.gameGenreId = gameGenreId;
     }
 
     public int getRetailerId() {

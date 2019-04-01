@@ -1,4 +1,4 @@
-@(booktypes : List[BookType], bookGenres : List[BookGenre], retailers : List[Retailer], shelves : List[Bookshelf])
+@(book : Book, booktypes : List[BookType], bookGenres : List[BookGenre], retailers : List[Retailer], shelves : List[Bookshelf])
 @doctype.render
 <html lang = "en">
     <head>
@@ -20,25 +20,27 @@
                     </li>
 
                     <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop2" data-toggle="dropdown">
+                    <li class = "nav-item dropdown">
+                        <a class = "nav-link dropdown-toggle text-light" href = "#" id = "navbardrop2"
+                           data-toggle = "dropdown">
                             Collections List
                         </a>
-                        <div class="dropdown-menu bg-dark">
-                            <a class="dropdown-item text-light" href="/collection/1">Currently Own</a>
-                            <a class="dropdown-item text-light" href="/collection/2">Wishlist</a>
+                        <div class = "dropdown-menu bg-dark">
+                            <a class = "dropdown-item text-light" href = "/collection/1">Currently Own</a>
+                            <a class = "dropdown-item text-light" href = "/collection/2">Wishlist</a>
                         </div>
                     </li>
 
                     <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop" data-toggle="dropdown">
+                    <li class = "nav-item dropdown">
+                        <a class = "nav-link dropdown-toggle text-light" href = "#" id = "navbardrop"
+                           data-toggle = "dropdown">
                             Add Media
                         </a>
-                        <div class="dropdown-menu bg-dark">
-                            <a class="dropdown-item text-light" href="/addbook">Add a Book</a>
-                            <a class="dropdown-item text-light" href="/adddisc">Add a Disc</a>
-                            <a class="dropdown-item text-light" href="/addgame">Add a Game</a>
+                        <div class = "dropdown-menu bg-dark">
+                            <a class = "dropdown-item text-light" href = "/addbook">Add a Book</a>
+                            <a class = "dropdown-item text-light" href = "/adddisc">Add a Disc</a>
+                            <a class = "dropdown-item text-light" href = "/addgame">Add a Game</a>
                             <a class = "dropdown-item text-light" href = "/addalbum">Add an Album</a>
 
                         </div>
@@ -47,51 +49,68 @@
                 </ul>
             </div>
         </nav>
-
         <div class = "container">
             <div class = "form-group">
-                <form method = "POST">
+                <form method = "POST" enctype = "multipart/form-data">
                     @helper.CSRF.formField
-                    <h1 class = "display-1 text-white text-center">Add a Book</h1>
+                    <h1 class = "display-1 text-white text-center">Editing @book.getBookName</h1>
                     <div class = "input-group mb-3">
-                        <div class = "input-group-prepend">
-                            <span class = "input-group-text bg-info">General Information</span>
-                        </div>
-                        <input type = "text" name = "bookname" placeholder = "Book Name">
-                        <input type = "number" min = "0.00" step = "0.01" name = "bookprice" placeholder = "Book Price">
+
+                        <input type = "text" value = "@book.getBookName" name = "bookname">
+                        <input type = "number" min = "0.00" step = "0.01" name = "bookprice"
+                               value = "@book.getBookPrice">
+
                         <select name = "booktype">
-                            <option selected>(Select a book type)</option>
                             @for(booktype<-booktypes){
+                            @if(booktype.getBookTypeId==book.getBookTypeId){
+                            <option value = "@booktype.getBookTypeId" selected>@booktype.getBookTypeName</option>
+                            } else{
                             <option value = "@booktype.getBookTypeId">@booktype.getBookTypeName</option>
                             }
+                            }
                         </select>
-                        <input type = "text" name = "authorname" placeholder = "Author Name">
+
+                        <input type = "text" value = "@book.getAuthorName" name = "authorname">
                     </div>
 
                     <div class = "input-group mb-3">
                         <div class = "input-group-prepend">
                             <span class = "input-group-text bg-info">Details</span>
                         </div>
+
                         <select name = "genre">
-                            <option selected>(Select a genre)</option>
                             @for(bookGenre<-bookGenres){
+                            @if(bookGenre.getBookGenreId==book.getBookGenreId){
+                            <option value = "@bookGenre.getBookGenreId" selected>@bookGenre.getGenreName</option>
+                            } else{
                             <option value = "@bookGenre.getBookGenreId">@bookGenre.getGenreName</option>
                             }
-                        </select>
-                        <select name = "retailer">
-                            <option selected>(Select a retailer)</option>
-                            @for(retailer<-retailers){
-                            <option value = "@retailer.getRetailerId">@retailer.getRetailerName</option>
                             }
                         </select>
+
+                        <select name = "retailer">
+                            @for(retailer<-retailers){
+                            @if(retailer.getRetailerId==book.getRetailerId){
+                            <option value = "@retailer.getRetailerId" selected>@retailer.getRetailerName</option>
+                            } else{
+                            <option value = "@retailer.getRetailerId">@retailer.getRetailerName</option>
+                            }
+                            }
+                        </select>
+
+
                         <select name = "bookshelf">
-                            <option selected>(Select a bookshelf)</option>
                             @for(shelf<-shelves){
+                            @if(shelf.getBookshelfId==book.getBookshelfId){
+                            <option value = "@shelf.getBookshelfId" selected>@shelf.getBookshelfName</option>
+                            } else{
                             <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>
+                            }
                             }
                         </select>
                     </div>
-                    <input type = "submit" class = "btn btn-info btn-block" value = "Save">
+
+                    <input type = "submit" value = "Save">
                 </form>
             </div>
         </div>

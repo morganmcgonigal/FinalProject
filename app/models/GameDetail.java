@@ -17,6 +17,7 @@ public class GameDetail {
     private String genreName;
     private String retailerName;
     private String consoleName;
+    private int bookshelfId;
 
 //                      g.gameId, g.gamePrice, " +
 //                      g.gameName, gt.gameTypeName, ge.genreName, " +
@@ -25,7 +26,7 @@ public class GameDetail {
 
     public GameDetail(int gameId, BigDecimal gamePrice, String gameName,
                       String gameTypeName, String genreName,
-                      String retailerName, String consoleName) {
+                      String retailerName, String consoleName, int bookshelfId) {
         this.gameId = gameId;
         this.gamePrice = gamePrice;
         this.gameName = gameName;
@@ -33,6 +34,7 @@ public class GameDetail {
         this.genreName = genreName;
         this.retailerName = retailerName;
         this.consoleName = consoleName;
+        this.bookshelfId = bookshelfId;
     }
 
     public int getGameId() {
@@ -65,5 +67,9 @@ public class GameDetail {
 
     public String getConsoleName() {
         return consoleName;
+    }
+
+    public int getBookshelfId() {
+        return bookshelfId;
     }
 }

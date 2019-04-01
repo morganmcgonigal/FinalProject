@@ -1,0 +1,108 @@
+@(album : Album, albumGenres : List[AlbumGenre], retailers : List[Retailer], shelves : List[Bookshelf])
+@doctype.render
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Title</title>
+        <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+        <script src = "/assets/lib/jquery/jquery.min.js"></script>
+        <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body class = "bg-secondary">
+        <nav id = "main" class = "navbar navbar-expand-lg sticky-top text-light bg-dark mb-4">
+            <a class = "navbar-brand text-white" href = "/">Navigation</a>
+            <!-- Collapsible content -->
+            <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+                <ul class = "navbar-nav">
+
+                    <li class = "nav-item active">
+                        <a class = "nav-link text-light" href = "/">Home</a>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class = "nav-item dropdown">
+                        <a class = "nav-link dropdown-toggle text-light" href = "#" id = "navbardrop2"
+                           data-toggle = "dropdown">
+                            Collections List
+                        </a>
+                        <div class = "dropdown-menu bg-dark">
+                            <a class = "dropdown-item text-light" href = "/collection/1">Currently Own</a>
+                            <a class = "dropdown-item text-light" href = "/collection/2">Wishlist</a>
+                        </div>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class = "nav-item dropdown">
+                        <a class = "nav-link dropdown-toggle text-light" href = "#" id = "navbardrop"
+                           data-toggle = "dropdown">
+                            Add Media
+                        </a>
+                        <div class = "dropdown-menu bg-dark">
+                            <a class = "dropdown-item text-light" href = "/addbook">Add a Book</a>
+                            <a class = "dropdown-item text-light" href = "/adddisc">Add a Disc</a>
+                            <a class = "dropdown-item text-light" href = "/addgame">Add a Game</a>
+                            <a class = "dropdown-item text-light" href = "/addalbum">Add an Album</a>
+
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <div class = "container">
+            <div class = "form-group">
+                <form method = "POST" enctype = "multipart/form-data">
+                    @helper.CSRF.formField
+                    <h1 class = "display-1 text-white text-center">Editing @album.getAlbumName</h1>
+                    <div class = "input-group mb-3">
+
+                        <input type = "text" value = "@album.getAlbumName" name = "albumname">
+                        <input type = "number" min = "0.00" step = "0.01" name = "albumprice"
+                               value = "@album.getAlbumPrice">
+
+                        <input type = "text" value = "@album.getArtistName" name = "artistname">
+                    </div>
+
+                    <div class = "input-group mb-3">
+                        <div class = "input-group-prepend">
+                            <span class = "input-group-text bg-info">Details</span>
+                        </div>
+
+                        <select name = "genre">
+                            @for(albumGenre<-albumGenres){
+                            @if(albumGenre.getAlbumGenreId==album.getAlbumGenreId){
+                            <option value = "@albumGenre.getAlbumGenreId" selected>@albumGenre.getGenreName</option>
+                            } else{
+                            <option value = "@albumGenre.getAlbumGenreId">@albumGenre.getGenreName</option>
+                            }
+                            }
+                        </select>
+
+                        <select name = "retailer">
+                            @for(retailer<-retailers){
+                            @if(retailer.getRetailerId==album.getRetailerId){
+                            <option value = "@retailer.getRetailerId" selected>@retailer.getRetailerName</option>
+                            } else{
+                            <option value = "@retailer.getRetailerId">@retailer.getRetailerName</option>
+                            }
+                            }
+                        </select>
+
+
+                        <select name = "bookshelf">
+                            @for(shelf<-shelves){
+                            @if(shelf.getBookshelfId==album.getBookshelfId){
+                            <option value = "@shelf.getBookshelfId" selected>@shelf.getBookshelfName</option>
+                            } else{
+                            <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>
+                            }
+                            }
+                        </select>
+                    </div>
+
+                    <input type = "submit" value = "Save">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

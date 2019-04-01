@@ -9,6 +9,20 @@ GET     /bookshelf                  controllers.BookshelfController.getBookshelf
 
 GET     /collection/:id             controllers.CollectionController.getCollection(id : Integer)
 
+GET     /collectionchart/:id        controllers.CollectionController.getCollectionChart(id : Integer)
+
+GET     /updatebook/:id            controllers.BookController.getBookEdit(id : Integer)
+POST    /updatebook/:id            controllers.BookController.postBookEdit(id : Integer)
+
+GET     /updatedisc/:id             controllers.DiscController.getDiscEdit(id : Integer)
+POST    /updatedisc/:id             controllers.DiscController.postDiscEdit(id : Integer)
+
+GET     /updategame/:id             controllers.GameController.getGameEdit(id : Integer)
+POST    /updategame/:id             controllers.GameController.postGameEdit(id : Integer)
+
+GET     /updatealbum/:id            controllers.AlbumController.getAlbumEdit(id : Integer)
+POST    /updatealbum/:id            controllers.AlbumController.postAlbumEdit(id : Integer)
+
 GET     /addbook                    controllers.CollectionController.getBookAdd
 POST    /addbook                    controllers.CollectionController.postBookAdd
 
@@ -17,6 +31,14 @@ POST    /adddisc                    controllers.CollectionController.postDiscAdd
 
 GET     /addgame                    controllers.CollectionController.getGameAdd
 POST    /addgame                    controllers.CollectionController.postGameAdd
+
+GET     /addalbum                   controllers.CollectionController.getAlbumAdd
+POST    /addalbum                   controllers.CollectionController.postAlbumAdd
+
+GET     /deletebook/:id            controllers.CollectionController.getDeleteBook(id : Integer)
+GET     /deletedisc/:id            controllers.CollectionController.getDeleteDisc(id : Integer)
+GET     /deletegame/:id            controllers.CollectionController.getDeleteGame(id : Integer)
+GET     /deletealbum/:id            controllers.CollectionController.getDeleteAlbum(id : Integer)
 
 
 
