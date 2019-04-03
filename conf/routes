@@ -35,14 +35,20 @@ POST    /addgame                    controllers.CollectionController.postGameAdd
 GET     /addalbum                   controllers.CollectionController.getAlbumAdd
 POST    /addalbum                   controllers.CollectionController.postAlbumAdd
 
+GET     /addbookshelf               controllers.CollectionController.getAddBookshelf
+POST    /addbookshelf               controllers.CollectionController.postAddBookshelf
+
 GET     /deletebook/:id             controllers.CollectionController.getDeleteBook(id : Integer)
 GET     /deletedisc/:id             controllers.CollectionController.getDeleteDisc(id : Integer)
 GET     /deletegame/:id             controllers.CollectionController.getDeleteGame(id : Integer)
 GET     /deletealbum/:id            controllers.CollectionController.getDeleteAlbum(id : Integer)
 
-GET     /collectiondemo/:id         controllers.CollectionController.getCollectionDemo(id : Integer)
-
 GET     /book/:id                   controllers.BookController.getBook(id : Integer)
+GET     /album/:id                   controllers.AlbumController.getAlbum(id : Integer)
+GET     /disc/:id                   controllers.DiscController.getDisc(id : Integer)
+GET     /game/:id                   controllers.GameController.getGame(id : Integer)
+
+# GET     /editdemo/:id               controllers.BookController.getDemo(id : Integer)
 
 
 

@@ -1,183 +1,255 @@
-@(bookshelf : Bookshelf, books : List[BookDetail], games : List[GameDetail], discs : List[DiscDetail], albums : List[AlbumDetail])
+@(bookshelf : Bookshelf, books : List[BookDetail], games : List[GameDetail], discs : List[DiscDetail], albums : List[AlbumDetail], shelves : List[Bookshelf])
 @doctype.render
 <html lang = "en">
+
     <head>
-        <meta charset = "UTF-8">
-        <title>Collection</title>
+
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name = "description" content = "">
+        <meta name = "author" content = "">
+
+        <title>storefully</title>
+
+        <!-- Bootstrap core CSS -->
         <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
         <script src = "/assets/lib/jquery/jquery.min.js"></script>
         <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+        <link rel = "stylesheet" href = "/assets/stylesheets/main.css">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <!-- STYLE CSS -->
+        <link rel = "stylesheet" href = "/assets/stylesheets/sidebar.css">
+
     </head>
-    <body class = "bg-secondary">
 
-        <nav id = "main" class = "navbar navbar-expand-lg sticky-top text-light bg-dark mb-4">
-            <a class = "navbar-brand text-white" href = "/">Navigation</a>
-            <!-- Collapsible content -->
-            <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
-                <ul class = "navbar-nav">
+    <body>
 
-                    <li class = "nav-item active">
-                        <a class = "nav-link text-light" href = "/">Home</a>
-                    </li>
+        <!-- Navigation -->
+        <div class = "nav-side-menu">
+            <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
+            <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
+            <i class = "fa fa-film"></i>
 
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop2" data-toggle="dropdown">
-                            Collections List
+            <div class = "menu-list">
+
+                <ul id = "menu-content" class = "menu-content collapse out">
+                    <li>
+                        <a href = "/" class = "ml-2">
+                            Home <div class = "float-right mr-2"><img src = "/assets/images/home.png" width = "10px"></div>
                         </a>
-                        <div class="dropdown-menu bg-dark">
-                            <a class="dropdown-item text-light" href="/collection/1">Currently Own</a>
-                            <a class="dropdown-item text-light" href="/collection/2">Wishlist</a>
-                        </div>
                     </li>
 
-                    <li class = "nav-item active">
-                        <a class = "nav-link text-light" href = "#Books">Books</a>
-                    </li>
-                    <li class = "nav-item active">
-                        <a class = "nav-link text-light" href = "#Games">Games</a>
-                    </li>
-                    <li class = "nav-item active">
-                        <a class = "nav-link text-light" href = "#Discs">Discs</a>
-                    </li>
-
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbardrop" data-toggle="dropdown">
-                            Add Media
+                    <li data-toggle = "collapse" data-target = "#service" class = "collapsed active">
+                        <a href = "#" class = "ml-2">Collections
+                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
                         </a>
-                        <div class="dropdown-menu bg-dark">
-                            <a class="dropdown-item text-light" href="/addbook">Add a Book</a>
-                            <a class="dropdown-item text-light" href="/adddisc">Add a Disc</a>
-                            <a class="dropdown-item text-light" href="/addgame">Add a Game</a>
-                            <a class = "dropdown-item text-light" href = "/addalbum">Add an Album</a>
+                    </li>
+                    <ul class = "sub-menu collapse" id = "service">
+                        @for(shelf<-shelves){
+                        <li><a href = "/collection/@shelf.getBookshelfId" class = "ml-2">@shelf.getBookshelfName
+                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            </div>
+                        </a></li>
+                        }
 
-                        </div>
+                    </ul>
+
+                    <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
+                        <a href = "#" class = "ml-2">Add Media
+                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                        </a>
+                    </li>
+                    <ul class = "sub-menu collapse" id = "products">
+                        <li><a href = "/addbook" class = "ml-2">Add a Book
+                            <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/adddisc" class = "ml-2">Add a Disc
+                            <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addgame" class = "ml-2">Add a Game
+                            <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addalbum" class = "ml-2">Add an Album
+                            <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
+                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            </div>
+                        </a></li>
+                    </ul>
+
+
+                    <li>
+                        <a href = "#Books" class = "ml-2">
+                            Books <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href = "#Discs" class = "ml-2">
+                            Discs <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href = "#Albums" class = "ml-2">
+                            Albums <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href = "#Games" class = "ml-2">
+                            Games <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                        </a>
                     </li>
 
                 </ul>
             </div>
-        </nav>
+        </div>
 
+        <!-- Page Content -->
         <div class = "container">
-            <h1 class = "display-2 text-center text-whited">@bookshelf.getBookshelfName</h1>
-            <table class = "table table-hover table-dark table-striped">
-                <tr id = "Books">
-                    <th class = "bg-info">Book Title</th>
-                    <th class = "bg-info">Price</th>
-                    <th class = "bg-info">Book Type</th>
-                    <th class = "bg-info">Genre</th>
-                    <th class = "bg-info">Retailer</th>
-                    <th class = "bg-info">Author</th>
-                    <th class = "bg-info"></th>
-                    <th class = "bg-info"></th>
-                </tr>
+
+            <!-- Jumbotron Header -->
+            <div class = "alert alert-info alert-dismissible fade show" role = "alert">
+                <h4 class = "alert-heading">Welcome to storefully!</h4>
+                <p>storefully is an application created to help track various types of media you have in your
+                    bookshelves. So far, it can keep track of your books, albums, discs (like DVDs and Blu-Rays), and
+                    games.
+                    Further improvements will be made in time and pushed as often as they can be.</p>
+                <hr>
+                <p class = "mb-0">Please note the navigation at the top that will take you through the various lists
+                    (currently own
+                    and a wishlist), and through the types of media on your current list. You can also add in new media
+                    or update
+                    existing media.</p>
+                <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
+                    <span aria-hidden = "true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Page Features -->
+            <div class = "row text-center">
+
+                <!--START OF BOOKS-->
+
+                <div class = "col-md-12">
+                    <h2 id = "Books" class = "pb-2 mb-4">Books</h2>
+                </div>
+
                 @for(book<-books){
                 @if(bookshelf.getBookshelfId==book.getBookshelfId){
-                <tr>
-                    <td>@book.getBookName</td>
-                    <td>@book.getFormattedBookPrice</td>
-                    <td>@book.getBookTypeName</td>
-                    <td>@book.getGenreName</td>
-                    <td>@book.getRetailerName</td>
-                    <td>@book.getAuthorName</td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/updatebook/@book.getBookId">Edit</a></button>
-                    </td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/deletebook/@book.getBookId">Delete</a></button>
-                    </td>
-                </tr>
+                <div class = "col-lg-3 col-md-6 mb-4">
+                    <div class = "card h-100">
+                        <img class = "card-img-top" src = "http://placehold.it/500x325" alt = "">
+                        <div class = "card-body">
+                            <h4 class = "card-title">@book.getBookName</h4>
+                            <p class = "card-text">@book.getAuthorName</p>
+                        </div>
+                        <div class = "card-footer">
+                            <a href = "/book/@book.getBookId" class = "btn btn-info">View</a>
+                            <a href = "/updatebook/@book.getBookId" class = "btn btn-info">Edit</a>
+                            <a href = "/deletebook/@book.getBookId" class = "btn btn-info">Delete</a>
+                        </div>
+                    </div>
+                </div>
                 }
                 }
 
-                <tr id = "Games">
-                    <th class = "bg-info">Game Title</th>
-                    <th class = "bg-info">Price</th>
-                    <th class = "bg-info">Game Type</th>
-                    <th class = "bg-info">Genre</th>
-                    <th class = "bg-info">Retailer</th>
-                    <th class = "bg-info">Console</th>
-                    <th class = "bg-info"></th>
-                    <th class = "bg-info"></th>
-                </tr>
-                @for(game<-games){
-                @if(bookshelf.getBookshelfId==game.getBookshelfId){
-                <tr>
-                    <td>@game.getGameName</td>
-                    <td>@game.getFormattedGamePrice</td>
-                    <td>@game.getGameTypeName</td>
-                    <td>@game.getGenreName</td>
-                    <td>@game.getRetailerName</td>
-                    <td>@game.getConsoleName</td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/updategame/@game.getGameId">Edit</a></button>
-                    </td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/deletegame/@game.getGameId">Delete</a></button>
-                    </td>
-                    }
-                </tr>
-                }
+                <!--START OF DISCS-->
 
-                <tr id = "Discs">
-                    <th class = "bg-info">Disc Title</th>
-                    <th class = "bg-info">Price</th>
-                    <th class = "bg-info">Disc Type</th>
-                    <th class = "bg-info">Genre</th>
-                    <th class = "bg-info">Retailer</th>
-                    <th class = "bg-info"></th>
-                    <th class = "bg-info"></th>
-                    <th class = "bg-info"></th>
-                </tr>
+                <div class = "col-md-12">
+                    <h2 id = "Discs" class = "pb-2 mb-4">Discs</h2>
+                </div>
+
                 @for(disc<-discs){
                 @if(bookshelf.getBookshelfId==disc.getBookshelfId){
-                <tr>
-                    <td>@disc.getDiscName</td>
-                    <td>@disc.getFormattedDiscPrice</td>
-                    <td>@disc.getDiscTypeName</td>
-                    <td>@disc.getGenreName</td>
-                    <td>@disc.getRetailerName</td>
-                    <td></td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/updatedisc/@disc.getDiscId">Edit</a></button>
-                    </td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/deletedisc/@disc.getDiscId">Delete</a></button>
-                    </td>
-                </tr>
+                <div class = "col-lg-3 col-md-6 mb-4">
+                    <div class = "card h-100">
+                        <img class = "card-img-top" src = "http://placehold.it/500x325" alt = "">
+                        <div class = "card-body">
+                            <h4 class = "card-title">@disc.getDiscName</h4>
+                            <p class = "card-text">@disc.getDiscTypeName</p>
+                        </div>
+                        <div class = "card-footer">
+                            <a href = "/disc/@disc.getDiscId" class = "btn btn-info">View</a>
+                            <a href = "/updatedisc/@disc.getDiscId" class = "btn btn-info">Edit</a>
+                            <a href = "/deletedisc/@disc.getDiscId" class = "btn btn-info">Delete</a>
+                        </div>
+                    </div>
+                </div>
                 }
                 }
 
-                <tr id = "Albums">
-                    <th class = "bg-info">Album Name</th>
-                    <th class = "bg-info">Album Price</th>
-                    <th class = "bg-info">Artist Name</th>
-                    <th class = "bg-info">Genre</th>
-                    <th class = "bg-info">Retailer</th>
-                    <th class = "bg-info"></th>
-                    <th class = "bg-info"></th>
-                    <th class = "bg-info"></th>
-                </tr>
+                <!--START OF ALBUMS-->
+
+                <div class = "col-md-12">
+                    <h2 id = "Albums" class = "pb-2 mb-4">Albums</h2>
+                </div>
+
                 @for(album<-albums){
                 @if(bookshelf.getBookshelfId==album.getBookshelfId){
-                <tr>
-                    <td>@album.getAlbumName</td>
-                    <td>@album.getFormattedAlbumPrice</td>
-                    <td>@album.getArtistName</td>
-                    <td>@album.getGenreName</td>
-                    <td>@album.getRetailerName</td>
-                    <td></td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/updatealbum/@album.getAlbumId">Edit</a></button>
-                    </td>
-                    <td>
-                        <button type = "button" class = "btn btn-outline-info"><a href = "/deletealbum/@album.getAlbumId">Delete</a></button>
-                    </td>
-                </tr>
+                <div class = "col-lg-3 col-md-6 mb-4">
+                    <div class = "card h-100">
+                        <img class = "card-img-top" src = "http://placehold.it/500x325" alt = "">
+                        <div class = "card-body">
+                            <h4 class = "card-title">@album.getAlbumName</h4>
+                            <p class = "card-text">@album.getArtistName</p>
+                        </div>
+                        <div class = "card-footer">
+                            <a href = "/album/@album.getAlbumId" class = "btn btn-info">View</a>
+                            <a href = "/updatealbum/@album.getAlbumId" class = "btn btn-info">Edit</a>
+                            <a href = "/deletealbum/@album.getAlbumId" class = "btn btn-info">Delete</a>
+                        </div>
+                    </div>
+                </div>
                 }
                 }
-            </table>
+
+                <!--START OF GAMES-->
+
+                <div class = "col-md-12">
+                    <h2 id = "Games" class = "pb-2 mb-4">Games</h2>
+                </div>
+
+                @for(game<-games){
+                @if(bookshelf.getBookshelfId==game.getBookshelfId){
+                <div class = "col-lg-3 col-md-6 mb-4">
+                    <div class = "card h-100">
+                        <img class = "card-img-top" src = "http://placehold.it/500x325" alt = "">
+                        <div class = "card-body">
+                            <h4 class = "card-title">@game.getGameName</h4>
+                            <p class = "card-text">@game.getConsoleName</p>
+                        </div>
+                        <div class = "card-footer">
+                            <a href = "/game/@game.getGameId" class = "btn btn-info">View</a>
+                            <a href = "/updategame/@game.getGameId" class = "btn btn-info">Edit</a>
+                            <a href = "/deletegame/@game.getGameId" class = "btn btn-info">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                }
+                }
+
+            </div>
+            <!-- /.row -->
+
         </div>
+        <!-- /.container -->
+
+        <!-- Footer -->
+        <footer class = "py-3 bg-light">
+            <div class = "container">
+                <p class = "mb-3 text-center">By Morgan McGonigal 2019</p>
+            </div>
+            <!-- /.container -->
+        </footer>
+
+        <!-- Bootstrap core JavaScript -->
+        <script src = "vendor/jquery/jquery.min.js"></script>
+        <script src = "vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     </body>
+
 </html>

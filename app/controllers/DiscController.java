@@ -20,13 +20,13 @@ public class DiscController extends Controller {
 
     @Inject
 
-    public DiscController (FormFactory formFactory, JPAApi db) {
+    public DiscController(FormFactory formFactory, JPAApi db) {
         this.formFactory = formFactory;
         this.db = db;
     }
 
     @Transactional(readOnly = true)
-    public Result getDiscEdit(int discId){
+    public Result getDiscEdit(int discId) {
         TypedQuery<Disc> discQuery = db.em().createQuery(
                 "SELECT d FROM Disc d WHERE discId = :discId",
                 Disc.class);
@@ -57,7 +57,7 @@ public class DiscController extends Controller {
     }
 
     @Transactional
-    public Result postDiscEdit(int discId){
+    public Result postDiscEdit(int discId) {
         TypedQuery<Disc> discQuery = db.em().createQuery(
                 "SELECT d FROM Disc d WHERE discId = :discId",
                 Disc.class);
@@ -74,7 +74,6 @@ public class DiscController extends Controller {
         int genreId = Integer.parseInt(sgenreId);
         String sretailerId = form.get("retailer");
         int retailerId = Integer.parseInt(sretailerId);
-        String artistName = form.get("artistname");
         String sbookshelfId = form.get("bookshelf");
         int bookshelfId = Integer.parseInt(sbookshelfId);
 
@@ -83,7 +82,6 @@ public class DiscController extends Controller {
         disc.setDiscTypeId(discTypeId);
         disc.setDiscGenreId(genreId);
         disc.setRetailerId(retailerId);
-        disc.setArtistName(artistName);
         disc.setBookshelfId(bookshelfId);
 
         db.em().persist(disc);
@@ -93,6 +91,7 @@ public class DiscController extends Controller {
                 Bookshelf.class);
         bookshelfQuery.setParameter("bookshelfId", bookshelfId);
         Bookshelf bookshelf = bookshelfQuery.getSingleResult();
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
@@ -121,7 +120,7 @@ public class DiscController extends Controller {
         TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
                 "SELECT NEW models.DiscDetail(d.discId, d.discName," +
                         "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
+                        "g.genreName, r.retailerName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
                         "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
@@ -138,6 +137,46 @@ public class DiscController extends Controller {
                         "ORDER BY a.albumName", AlbumDetail.class);
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
 
-        return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
+        return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
+    }
+
+    @Transactional(readOnly = true)
+    public Result getDisc(int discId) {
+        TypedQuery<Disc> discQuery = db.em().createQuery(
+                "SELECT d FROM Disc d WHERE discId = :discId",
+                Disc.class);
+        discQuery.setParameter("discId", discId);
+        Disc disc = discQuery.getSingleResult();
+
+        TypedQuery<DiscGenre> discGenreQuery = db.em().createQuery(
+                "SELECT dg FROM DiscGenre dg WHERE discGenreId = :discGenreId",
+                DiscGenre.class);
+        discGenreQuery.setParameter("discGenreId", disc.getDiscGenreId());
+        DiscGenre discGenre = discGenreQuery.getSingleResult();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r WHERE retailerId = :retailerId",
+                Retailer.class);
+        retailerQuery.setParameter("retailerId", disc.getRetailerId());
+        Retailer retailer = retailerQuery.getSingleResult();
+
+        TypedQuery<DiscType> discTypeQuery = db.em().createQuery(
+                "SELECT dt FROM DiscType dt WHERE discTypeId = :discTypeId",
+                DiscType.class);
+        discTypeQuery.setParameter("discTypeId", disc.getDiscTypeId());
+        DiscType discType = discTypeQuery.getSingleResult();
+
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        TypedQuery<Bookshelf> bookshelfTypedQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
+                Bookshelf.class);
+        bookshelfTypedQuery.setParameter("bookshelfId", disc.getBookshelfId());
+        Bookshelf bookshelf = bookshelfTypedQuery.getSingleResult();
+
+        return ok(views.html.disc.render(disc, discGenre, retailer, discType, bookshelf, bookshelves));
     }
 }

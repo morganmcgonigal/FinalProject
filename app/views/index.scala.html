@@ -1,47 +1,112 @@
+@(bookshelves : List[Bookshelf])
 @doctype.render
 <html lang = "en">
+
     <head>
-        <meta charset = "UTF-8">
-        <title></title>
-        <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name = "description" content = "">
+        <meta name = "author" content = "">
+
+        <title>The Big Picture - Start Bootstrap Template</title>
+
         <script src = "/assets/lib/jquery/jquery.min.js"></script>
         <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+
+        <!-- Bootstrap core CSS -->
+        <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href = "/assets/stylesheets/index.css" rel = "stylesheet">
+        <link rel = "stylesheet" href = "/assets/stylesheets/sidebar.css">
     </head>
-    <body class = "bg-secondary">
-        <nav id = "main" class = "navbar navbar-expand-lg sticky-top text-light bg-dark mb-4">
-            <a class = "navbar-brand text-white" href = "/">storefully</a>
-        </nav>
-        <div class = "container">
 
-            <h1 class = "display-1 text-light text-center">storefully</h1>
+    <body>
 
-            <div class = "card-group">
-                <div class = "card bg-dark text-light">
-                    <div class = "card-header text-center bg-info">Collections</div>
-                    <div class = "card-body text-center">
-                        <p class = "card-text text-white-50">For a comprehensive list of your media.</p>
-                        <!--<br /><br />-->
-                        <a href = "/collection/1" class = "btn btn-dark btn-block">Currently Owned Media</a>
+        <!-- Navigation -->
+        <div class = "nav-side-menu">
+            <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
+            <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
+            <i class = "fa fa-film"></i>
 
-                        <p class = "card-text text-white-50">For a list of items on your wishlist.</p>
-                        <a href = "/collection/2" class = "btn btn-dark btn-block">Wishlist</a>
-                    </div>
-                </div>
-                <div class = "card bg-dark text-light">
-                    <div class = "card-header text-center bg-info">Add Media</div>
-                    <div class = "card-body text-center">
-                        <p class = "card-text text-white-50">To add a new book to your collection or wishlist.</p>
-                        <a href = "/addbook" class = "btn btn-dark btn-block">Add a book</a>
-                        <p class = "card-text text-white-50">To add a new disc to your collection or wishlist.</p>
-                        <a href = "/adddisc" class = "btn btn-dark btn-block">Add a disc</a>
-                        <p class = "card-text text-white-50">To add a new game to your collection or wishlist.</p>
-                        <a href = "/addgame" class = "btn btn-dark btn-block">Add a game</a>
-                        <p class = "card-text text-white-50">To add a new album to your collection or wishlist.</p>
-                        <a href = "/addalbum" class = "btn btn-dark btn-block">Add an album</a>
+            <div class = "menu-list">
+
+                <ul id = "menu-content" class = "menu-content collapse out">
+                    <li>
+                        <a href = "/" class = "ml-2">
+                            Home <div class = "float-right mr-2"><img src = "/assets/images/home.png" width = "10px"></div>
+                        </a>
+                    </li>
+
+                    <li data-toggle = "collapse" data-target = "#service" class = "collapsed active">
+                        <a href = "#" class = "ml-2">Collections
+                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                        </a>
+                    </li>
+                    <ul class = "sub-menu collapse" id = "service">
+                        @for(shelf<-bookshelves){
+                        <li><a href = "/collection/@shelf.getBookshelfId" class = "ml-2">@shelf.getBookshelfName
+                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            </div>
+                        </a></li>
+                        }
+
+                    </ul>
+
+                    <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
+                        <a href = "#" class = "ml-2">Add Media
+                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                        </a>
+                    </li>
+                    <ul class = "sub-menu collapse" id = "products">
+                        <li><a href = "/addbook" class = "ml-2">Add a Book
+                            <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/adddisc" class = "ml-2">Add a Disc
+                            <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addgame" class = "ml-2">Add a Game
+                            <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addalbum" class = "ml-2">Add an Album
+                            <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
+                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            </div>
+                        </a></li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <section>
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col-lg-6">
+
+                        <div class="effect">
+
+                            <div class="title-effect">
+                                <h1>storefully</h1>
+
+                                <p>The application to keep track<br>
+                                    of your entertainment collection.</p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
+        <!-- Bootstrap core JavaScript -->
+        <script src = "vendor/jquery/jquery.min.js"></script>
+        <script src = "vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     </body>
+
 </html>

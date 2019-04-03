@@ -92,13 +92,14 @@ public class BookController extends Controller {
                 Bookshelf.class);
         bookshelfQuery.setParameter("bookshelfId", bookshelfId);
         Bookshelf bookshelf = bookshelfQuery.getSingleResult();
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
                         "b.bookPrice, bt.bookTypeName, g.genreName," +
                         " r.retailerName, b.authorName, b.bookshelfId) " +
                         "FROM Book b " +
-                        "JOIN BookGenre g ON g.genreId = b.genreId " +
+                        "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
                         "JOIN BookType bt ON bt.bookTypeId = b.bookTypeId " +
                         "JOIN Retailer r ON r.retailerId = b.retailerId " +
                         "ORDER BY b.bookName", BookDetail.class);
@@ -110,7 +111,7 @@ public class BookController extends Controller {
                         "r.retailerName, c.consoleName, g.bookshelfId) " +
                         "FROM Game g " +
                         "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
-                        "JOIN GameGenre ge ON ge.genreId = g.genreId " +
+                        "JOIN GameGenre ge ON ge.gameGenreId = g.gameGenreId " +
                         "JOIN Retailer r ON r.retailerId = g.retailerId " +
                         "JOIN Console c ON c.consoleId = g.consoleId " +
                         "ORDER BY g.gameName", GameDetail.class);
@@ -120,10 +121,10 @@ public class BookController extends Controller {
         TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
                 "SELECT NEW models.DiscDetail(d.discId, d.discName," +
                         "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
+                        "g.genreName, r.retailerName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
-                        "JOIN DiscGenre g ON g.genreId = d.genreId " +
+                        "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
                         "JOIN Retailer r ON r.retailerId = d.retailerId " +
                         "ORDER BY d.discName", DiscDetail.class);
         List<DiscDetail> discs = discDetailQuery.getResultList();
@@ -137,7 +138,7 @@ public class BookController extends Controller {
                         "ORDER BY a.albumName", AlbumDetail.class);
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
 
-        return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
+        return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
     }
 
     @Transactional(readOnly = true)
@@ -165,6 +166,17 @@ public class BookController extends Controller {
         bookGenreQuery.setParameter("bookGenreId", book.getBookGenreId());
         BookGenre bookGenre = bookGenreQuery.getSingleResult();
 
-        return ok(views.html.book.render(book, bookType, retailer, bookGenre));
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        TypedQuery<Bookshelf> bookshelfTypedQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
+                Bookshelf.class);
+        bookshelfTypedQuery.setParameter("bookshelfId", book.getBookshelfId());
+        Bookshelf bookshelf = bookshelfTypedQuery.getSingleResult();
+
+        return ok(views.html.book.render(book, bookType, retailer, bookGenre, bookshelf, bookshelves));
     }
 }

@@ -26,20 +26,21 @@ public class DiscDetail {
     private String discTypeName;
     private String genreName;
     private String retailerName;
-    private String artistName;
     private int bookshelfId;
 
-    public DiscDetail(int discId, String discName,
-                      BigDecimal discPrice, String discTypeName,
-                      String genreName, String retailerName,
-                      String artistName, int bookshelfId) {
+//    d.discId, d.discName," +
+//            "d.discPrice, dt.discTypeName," +
+//            "g.genreName, r.retailerName,d.bookshelfId
+
+    public DiscDetail(int discId, String discName, BigDecimal discPrice,
+                      String discTypeName, String genreName,
+                      String retailerName, int bookshelfId) {
         this.discId = discId;
         this.discName = discName;
         this.discPrice = discPrice;
         this.discTypeName = discTypeName;
         this.genreName = genreName;
         this.retailerName = retailerName;
-        this.artistName = artistName;
         this.bookshelfId = bookshelfId;
     }
 
@@ -55,7 +56,7 @@ public class DiscDetail {
         return discPrice;
     }
 
-    public String getFormattedDiscPrice(){
+    public String getFormattedDiscPrice() {
         return NumberFormat.getCurrencyInstance().format(discPrice);
     }
 
@@ -69,10 +70,6 @@ public class DiscDetail {
 
     public String getRetailerName() {
         return retailerName;
-    }
-
-    public String getArtistName() {
-        return artistName;
     }
 
     public int getBookshelfId() {

@@ -17,7 +17,6 @@ public class Disc {
     private int discGenreId;
     private int retailerId;
     private int bookshelfId;
-    private String artistName;
 
     public int getDiscId() {
         return discId;
@@ -77,14 +76,6 @@ public class Disc {
 
     public void setBookshelfId(int bookshelfId) {
         this.bookshelfId = bookshelfId;
-    }
-
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
     }
 
 

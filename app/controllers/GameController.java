@@ -98,13 +98,14 @@ public class GameController extends Controller {
                 Bookshelf.class);
         bookshelfQuery.setParameter("bookshelfId", bookshelfId);
         Bookshelf bookshelf = bookshelfQuery.getSingleResult();
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
                         "b.bookPrice, bt.bookTypeName, g.genreName," +
                         " r.retailerName, b.authorName, b.bookshelfId) " +
                         "FROM Book b " +
-                        "JOIN BookGenre g ON g.genreId = b.genreId " +
+                        "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
                         "JOIN BookType bt ON bt.bookTypeId = b.bookTypeId " +
                         "JOIN Retailer r ON r.retailerId = b.retailerId " +
                         "ORDER BY b.bookName", BookDetail.class);
@@ -116,7 +117,7 @@ public class GameController extends Controller {
                         "r.retailerName, c.consoleName, g.bookshelfId) " +
                         "FROM Game g " +
                         "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
-                        "JOIN GameGenre ge ON ge.genreId = g.genreId " +
+                        "JOIN GameGenre ge ON ge.gameGenreId = g.gameGenreId " +
                         "JOIN Retailer r ON r.retailerId = g.retailerId " +
                         "JOIN Console c ON c.consoleId = g.consoleId " +
                         "ORDER BY g.gameName", GameDetail.class);
@@ -126,10 +127,10 @@ public class GameController extends Controller {
         TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
                 "SELECT NEW models.DiscDetail(d.discId, d.discName," +
                         "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
+                        "g.genreName, r.retailerName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
-                        "JOIN DiscGenre g ON g.genreId = d.genreId " +
+                        "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
                         "JOIN Retailer r ON r.retailerId = d.retailerId " +
                         "ORDER BY d.discName", DiscDetail.class);
         List<DiscDetail> discs = discDetailQuery.getResultList();
@@ -143,6 +144,54 @@ public class GameController extends Controller {
                         "ORDER BY a.albumName", AlbumDetail.class);
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
 
-        return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
+        return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
+    }
+
+    @Transactional(readOnly = true)
+    public Result getGame(int gameId){
+        TypedQuery<Game> gameQuery = db.em().createQuery(
+                "SELECT g FROM Game g WHERE gameId = :gameId",
+                Game.class);
+        gameQuery.setParameter("gameId", gameId);
+        Game game = gameQuery.getSingleResult();
+
+        TypedQuery<GameType> gameTypeQuery = db.em().createQuery(
+                "SELECT gt FROM GameType gt WHERE gameTypeId = :gameTypeId",
+                GameType.class);
+        gameTypeQuery.setParameter("gameTypeId", game.getGameTypeId());
+        GameType gameType = gameTypeQuery.getSingleResult();
+
+        TypedQuery<Retailer> retailerQuery = db.em().createQuery(
+                "SELECT r FROM Retailer r WHERE retailerId = :retailerId",
+                Retailer.class);
+        retailerQuery.setParameter("retailerId", game.getRetailerId());
+        Retailer retailer = retailerQuery.getSingleResult();
+
+        TypedQuery<GameGenre> gameGenreQuery = db.em().createQuery(
+                "SELECT gg FROM GameGenre gg WHERE gameGenreId = :gameGenreId",
+                GameGenre.class);
+        gameGenreQuery.setParameter("gameGenreId", game.getGameGenreId());
+        GameGenre gameGenre = gameGenreQuery.getSingleResult();
+
+        TypedQuery<Console> consoleQuery = db.em().createQuery(
+                "SELECT c FROM Console c WHERE consoleId = :consoleId",
+                Console.class);
+        consoleQuery.setParameter("consoleId", game.getConsoleId());
+        Console console = consoleQuery.getSingleResult();
+
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        TypedQuery<Bookshelf> bookshelfTypedQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
+                Bookshelf.class);
+        bookshelfTypedQuery.setParameter("bookshelfId", game.getBookshelfId());
+        Bookshelf bookshelf = bookshelfTypedQuery.getSingleResult();
+
+//        type retailer console genre
+
+        return ok(views.html.game.render(game, gameType, retailer, gameGenre, console, bookshelf, bookshelves));
     }
 }

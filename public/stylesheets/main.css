@@ -1,3 +1,181 @@
+@font-face {
+    font-family: 'josefin_slabregular';
+    src: url('/assets/fonts/josefinslab-regular-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabsemibold';
+    src: url('/assets/fonts/josefinslab-semibold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabsemibold_italic';
+    src: url('/assets/fonts/josefinslab-semibolditalic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-semibolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabthin';
+    src: url('/assets/fonts/josefinslab-thin-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabthin_italic';
+    src: url('/assets/fonts/josefinslab-thinitalic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-thinitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabbold';
+    src: url('/assets/fonts/josefinslab-bold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabbold_italic';
+    src: url('/assets/fonts/josefinslab-bolditalic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slabitalic';
+    src: url('/assets/fonts/josefinslab-italic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slablight';
+    src: url('/assets/fonts/josefinslab-light-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'josefin_slablight_italic';
+    src: url('/assets/fonts/josefinslab-lightitalic-webfont.woff2') format('woff2'),
+         url('/assets/fonts/josefinslab-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #FF5D73;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  margin: 0;
+  font-family: 'josefin_slabregular', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #eaeaea;
+  -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+}
+
+h2{
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: 230px;
+  margin-top: 50px;
+}
+
 .bg-info {
   background-color: #FF5D73 !important;
 }
@@ -6,4 +184,69 @@
   color: #fff;
   background-color: #FF5D73;
   border-color: #FF8D9D;
+}
+
+.btn-info:hover {
+  color: #fff;
+  background-color: #FFC6CE;
+  border-color: #FF5D73;
+}
+
+.btn-info:focus, .btn-info.focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
+}
+
+.btn-info.disabled, .btn-info:disabled {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+.show > .btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: #117a8b;
+  border-color: #10707f;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5);
+}
+
+.bg-primary {
+background-color: #7C7A7A !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #7C7A7A;
+    border-color: #6969494;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .alert-info {
+      color: #0c5460;
+      background-color: #FFC6CE;
+      border-color: #FF8D9D;
+    }
+
+    .alert-info hr {
+      border-top-color: #abdde5;
+    }
+
+    .alert-info .alert-link {
+      color: #000;
+    }
+
+.text-info {
+  color: #FFC6CE !important;
+}
+
+a.text-info:hover, a.text-info:focus {
+  color: #FF8D9D !important;
 }

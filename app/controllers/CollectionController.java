@@ -2,7 +2,6 @@ package controllers;
 
 import models.*;
 import play.data.DynamicForm;
-import play.data.Form;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -10,12 +9,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CollectionController extends Controller {
 
@@ -36,6 +32,10 @@ public class CollectionController extends Controller {
         bookshelfQuery.setParameter("bookshelfId", bookshelfId);
         Bookshelf bookshelf = bookshelfQuery.getSingleResult();
 
+        TypedQuery<Bookshelf> bookshelfTypedQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b",Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfTypedQuery.getResultList();
+
 
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
@@ -64,7 +64,7 @@ public class CollectionController extends Controller {
         TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
                 "SELECT NEW models.DiscDetail(d.discId, d.discName," +
                         "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
+                        "g.genreName, r.retailerName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
                         "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
@@ -81,18 +81,24 @@ public class CollectionController extends Controller {
                         "ORDER BY a.albumName", AlbumDetail.class);
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
 
-        return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
+        return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
     }
 
     @Transactional(readOnly = true)
     public Result getCollectionChart(int bookshelfId) {
+
+        TypedQuery<Bookshelf> bookshelfTypedQuery = db.em().createQuery(
+                "SELECT b from Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfTypedQuery.getResultList();
+
+
         TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
                 "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
                 Bookshelf.class);
         bookshelfQuery.setParameter("bookshelfId", bookshelfId);
         Bookshelf bookshelf = bookshelfQuery.getSingleResult();
 
-
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
                         "b.bookPrice, bt.bookTypeName, g.genreName," +
@@ -137,7 +143,7 @@ public class CollectionController extends Controller {
                         "ORDER BY a.albumName", AlbumDetail.class);
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
 
-        return ok(views.html.collection.render(bookshelf, books, games, discs, albums));
+        return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
     }
 
     @Transactional(readOnly = true)
@@ -259,7 +265,6 @@ public class CollectionController extends Controller {
         int retailerId = Integer.parseInt(retailer);
         String shelf = form.get("bookshelf");
         int bookshelfId = Integer.parseInt(shelf);
-        String artistName = form.get("artistname");
 
         discs.setDiscName(discName);
         discs.setDiscPrice(discPrice);
@@ -267,7 +272,6 @@ public class CollectionController extends Controller {
         discs.setDiscGenreId(genreId);
         discs.setRetailerId(retailerId);
         discs.setBookshelfId(bookshelfId);
-        discs.setArtistName(artistName);
         db.em().persist(discs);
 
         TypedQuery<DiscGenre> genreQuery = db.em().createQuery(
@@ -449,7 +453,12 @@ public class CollectionController extends Controller {
         Book book = db.em().find(Book.class, bookId);
         db.em().remove(book);
 
-        return ok(views.html.index.render());
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        return ok(views.html.index.render(bookshelves));
     }
 
     @Transactional
@@ -458,7 +467,12 @@ public class CollectionController extends Controller {
         Disc disc = db.em().find(Disc.class, discId);
         db.em().remove(disc);
 
-        return ok(views.html.index.render());
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        return ok(views.html.index.render(bookshelves));
     }
 
     @Transactional
@@ -467,7 +481,12 @@ public class CollectionController extends Controller {
         Game game = db.em().find(Game.class, gameId);
         db.em().remove(game);
 
-        return ok(views.html.index.render());
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        return ok(views.html.index.render(bookshelves));
     }
 
     @Transactional
@@ -476,62 +495,40 @@ public class CollectionController extends Controller {
         Album album = db.em().find(Album.class, albumId);
         db.em().remove(album);
 
-        return ok(views.html.index.render());
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        return ok(views.html.index.render(bookshelves));
     }
 
-    @Transactional (readOnly = true)
-    public Result getCollectionDemo(int bookshelfId){
+    @Transactional(readOnly = true)
+    public Result getAddBookshelf(){
         TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
-                "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
                 Bookshelf.class);
-        bookshelfQuery.setParameter("bookshelfId", bookshelfId);
-        Bookshelf bookshelf = bookshelfQuery.getSingleResult();
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 
+        return ok(views.html.addbookshelf.render(bookshelves));
+    }
 
-        TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
-                "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
-                        "b.bookPrice, bt.bookTypeName, g.genreName," +
-                        " r.retailerName, b.authorName, b.bookshelfId) " +
-                        "FROM Book b " +
-                        "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
-                        "JOIN BookType bt ON bt.bookTypeId = b.bookTypeId " +
-                        "JOIN Retailer r ON r.retailerId = b.retailerId " +
-                        "ORDER BY b.bookName", BookDetail.class);
-        List<BookDetail> books = bookDetailQuery.getResultList();
+    @Transactional
+    public Result postAddBookshelf(){
+        Bookshelf bookshelf = new Bookshelf();
 
-        TypedQuery<GameDetail> gameDetailQuery = db.em().createQuery(
-                "SELECT NEW models.GameDetail(g.gameId, g.gamePrice, " +
-                        "g.gameName, gt.gameTypeName, ge.genreName, " +
-                        "r.retailerName, c.consoleName, g.bookshelfId) " +
-                        "FROM Game g " +
-                        "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
-                        "JOIN GameGenre ge ON ge.gameGenreId = g.gameGenreId " +
-                        "JOIN Retailer r ON r.retailerId = g.retailerId " +
-                        "JOIN Console c ON c.consoleId = g.consoleId " +
-                        "ORDER BY g.gameName", GameDetail.class);
-        List<GameDetail> games = gameDetailQuery.getResultList();
+        DynamicForm form = formFactory.form().bindFromRequest();
+        String bookshelfName = form.get("bookshelfname");
 
+        bookshelf.setBookshelfName(bookshelfName);
 
-        TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
-                "SELECT NEW models.DiscDetail(d.discId, d.discName," +
-                        "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
-                        "FROM Disc d " +
-                        "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
-                        "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
-                        "JOIN Retailer r ON r.retailerId = d.retailerId " +
-                        "ORDER BY d.discName", DiscDetail.class);
-        List<DiscDetail> discs = discDetailQuery.getResultList();
+        db.em().persist(bookshelf);
 
-        TypedQuery<AlbumDetail> albumDetailQuery = db.em().createQuery(
-                "SELECT NEW models.AlbumDetail(a.albumId, a.albumName, " +
-                        "a.albumPrice, ag.genreName, r.retailerName, a.artistName, a.bookshelfId) " +
-                        "FROM Album a " +
-                        "JOIN AlbumGenre ag ON ag.albumGenreId = a.albumGenreId " +
-                        "JOIN Retailer r ON r.retailerId = a.retailerId " +
-                        "ORDER BY a.albumName", AlbumDetail.class);
-        List<AlbumDetail> albums = albumDetailQuery.getResultList();
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 
-        return ok(views.html.collectiondemo.render(bookshelf, books, games, discs, albums));
+        return ok(views.html.index.render(bookshelves));
     }
 }

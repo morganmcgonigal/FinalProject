@@ -1,68 +1,92 @@
 @(disc : Disc, disctypes : List[DiscType], discGenres : List[DiscGenre], retailers : List[Retailer], shelves : List[Bookshelf])
 @doctype.render
-<html lang = "en">
+<html>
     <head>
-        <meta charset = "UTF-8">
-        <title>Title</title>
+        <meta charset = "utf-8">
+        <title>RegistrationForm_v1 by Colorlib</title>
         <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
         <script src = "/assets/lib/jquery/jquery.min.js"></script>
         <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <!-- STYLE CSS -->
+        <link rel = "stylesheet" href = "/assets/stylesheets/editdisc.css">
+        <link rel = "stylesheet" href = "/assets/stylesheets/sidebar.css">
+        <link rel = "stylesheet" href = "/assets/stylesheets/bodyfont.css">
     </head>
-    <body class = "bg-secondary">
-        <nav id = "main" class = "navbar navbar-expand-lg sticky-top text-light bg-dark mb-4">
-            <a class = "navbar-brand text-white" href = "/">Navigation</a>
-            <!-- Collapsible content -->
-            <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
-                <ul class = "navbar-nav">
 
-                    <li class = "nav-item active">
-                        <a class = "nav-link text-light" href = "/">Home</a>
-                    </li>
+    <body>
 
-                    <!-- Dropdown -->
-                    <li class = "nav-item dropdown">
-                        <a class = "nav-link dropdown-toggle text-light" href = "#" id = "navbardrop2"
-                           data-toggle = "dropdown">
-                            Collections List
+        <div class = "nav-side-menu">
+            <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
+            <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
+            <i class = "fa fa-film"></i>
+
+            <div class = "menu-list">
+
+                <ul id = "menu-content" class = "menu-content collapse out">
+                    <li>
+                        <a href = "/" class = "ml-2">
+                            Home
+                            <div class = "float-right mr-2"><img src = "/assets/images/home.png" width = "10px"></div>
                         </a>
-                        <div class = "dropdown-menu bg-dark">
-                            <a class = "dropdown-item text-light" href = "/collection/1">Currently Own</a>
-                            <a class = "dropdown-item text-light" href = "/collection/2">Wishlist</a>
-                        </div>
                     </li>
 
-                    <!-- Dropdown -->
-                    <li class = "nav-item dropdown">
-                        <a class = "nav-link dropdown-toggle text-light" href = "#" id = "navbardrop"
-                           data-toggle = "dropdown">
-                            Add Media
+                    <li data-toggle = "collapse" data-target = "#service" class = "collapsed">
+                        <a href = "#" class = "ml-2">Collections
+                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
                         </a>
-                        <div class = "dropdown-menu bg-dark">
-                            <a class = "dropdown-item text-light" href = "/addbook">Add a Book</a>
-                            <a class = "dropdown-item text-light" href = "/adddisc">Add a Disc</a>
-                            <a class = "dropdown-item text-light" href = "/addgame">Add a Game</a>
-                            <a class = "dropdown-item text-light" href = "/addalbum">Add an Album</a>
-
-                        </div>
                     </li>
+                    <ul class = "sub-menu collapse" id = "service">
+                        @for(shelf<-shelves){
+                        <li><a href = "/collection/@shelf.getBookshelfId" class = "ml-2">@shelf.getBookshelfName
+                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            </div>
+                        </a></li>
+                        }
+                    </ul>
 
+                    <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
+                        <a href = "#" class = "ml-2">Add Media
+                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                        </a>
+                    </li>
+                    <ul class = "sub-menu collapse" id = "products">
+                        <li><a href = "/addbook" class = "ml-2">Add a Book
+                            <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/adddisc" class = "ml-2">Add a Disc
+                            <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addgame" class = "ml-2">Add a Game
+                            <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addalbum" class = "ml-2">Add an Album
+                            <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                        </a></li>
+                        <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
+                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            </div>
+                        </a></li>
+                    </ul>
                 </ul>
             </div>
-        </nav>
-        <div class = "container">
-            <div class = "form-group">
-                <form method = "POST" enctype = "multipart/form-data">
-                    @helper.CSRF.formField
-                    <h1 class = "display-1 text-white text-center">Editing @disc.getDiscName</h1>
-                    <div class = "input-group mb-3">
-                        <div class = "input-group-prepend">
-                            <span class = "input-group-text bg-info">General Information</span>
-                        </div>
-                        <input type = "text" value = "@disc.getDiscName" name = "discname">
-                        <input type = "number" min = "0.00" step = "0.01" name = "discprice"
-                               value = "@disc.getDiscPrice">
+        </div>
 
-                        <select name = "disctype">
+        <div class = "wrapper">
+            <div class = "inner">
+                <div class = "image-holder">
+                    <img src = "/assets/images/discs.jpg" alt = "">
+                </div>
+                <form method = "POST">
+                    @helper.CSRF.formField
+                    <h3>Editing:  @disc.getDiscName</h3>
+                    <div class = "form-wrapper">
+                        <input type = "text" value = "@disc.getDiscName" name = "discname" class = "form-control">
+                        <i class = "zmdi zmdi-account"></i>
+                    </div>
+                    <div class = "form-wrapper">
+                        <select name = "disctype" class = "form-control">
                             @for(disctype<-disctypes){
                             @if(disctype.getDiscTypeId==disc.getDiscTypeId){
                             <option value = "@disctype.getDiscTypeId" selected>@disctype.getDiscTypeName</option>
@@ -71,17 +95,9 @@
                             }
                             }
                         </select>
-
-                        <input type = "text" value = "@disc.getArtistName" name = "artistname">
-
                     </div>
-
-                    <div class = "input-group mb-3">
-                        <div class = "input-group-prepend">
-                            <span class = "input-group-text bg-info">Details</span>
-                        </div>
-
-                        <select name = "genre">
+                    <div class = "form-wrapper">
+                        <select name = "genre" class = "form-control">
                             @for(discGenre<-discGenres){
                             @if(discGenre.getDiscGenreId==disc.getDiscGenreId){
                             <option value = "@discGenre.getDiscGenreId" selected>@discGenre.getGenreName</option>
@@ -90,8 +106,10 @@
                             }
                             }
                         </select>
-
-                        <select name = "retailer">
+                        <i class = "zmdi zmdi-caret-down"></i>
+                    </div>
+                    <div class = "form-wrapper">
+                        <select name = "retailer" class = "form-control">
                             @for(retailer<-retailers){
                             @if(retailer.getRetailerId==disc.getRetailerId){
                             <option value = "@retailer.getRetailerId" selected>@retailer.getRetailerName</option>
@@ -100,8 +118,14 @@
                             }
                             }
                         </select>
-
-                        <select name = "bookshelf">
+                        <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
+                    </div>
+                    <div class = "form-wrapper">
+                        <input type = "number" min = "0.00" step = "0.01"  name = "discprice" value = "@disc.getDiscPrice" class = "form-control">
+                        <i class = "zmdi zmdi-lock"></i>
+                    </div>
+                    <div class = "form-wrapper">
+                        <select name = "bookshelf" class = "form-control">
                             @for(shelf<-shelves){
                             @if(shelf.getBookshelfId==disc.getBookshelfId){
                             <option value = "@shelf.getBookshelfId" selected>@shelf.getBookshelfName</option>
@@ -110,11 +134,14 @@
                             }
                             }
                         </select>
+                        <i class = "zmdi zmdi-lock"></i>
                     </div>
-
-                    <input type = "submit" value = "Save">
+                    <input class = "btn" type = "submit" value = "Save">
+                    <i class = "zmdi zmdi-arrow-right"></i>
+                    </input>
                 </form>
             </div>
         </div>
-    </body>
+
+    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
