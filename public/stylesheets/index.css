@@ -4,6 +4,9 @@ body {
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  font-family: 'josefin_slabregular';
+  	-webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
 }
 
 @font-face {
@@ -148,12 +151,6 @@ a.text-info:hover, a.text-info:focus {
 *::before,
 *::after {
 	box-sizing: border-box;
-}
-
-body {
-	font-family: 'josefin_slabregular';
-	-webkit-font-smoothing: antialiased;
-     -moz-osx-font-smoothing: grayscale;
 }
 
 .effect {

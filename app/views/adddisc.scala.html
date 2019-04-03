@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>RegistrationForm_v1 by Colorlib</title>
+        <title>storefully - Adding a Disc</title>
         <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
         <script src = "/assets/lib/jquery/jquery.min.js"></script>
         <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -82,11 +82,11 @@
                     @helper.CSRF.formField
                     <h3>Add a Disc</h3>
                     <div class = "form-wrapper">
-                        <input type = "text" name = "discname" placeholder = "Disc Name" class = "form-control">
+                        <input type = "text" name = "discname" placeholder = "Disc Name" class = "form-control" required>
                         <i class = "zmdi zmdi-account"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "genre" class = "form-control">
+                        <select name = "genre" class = "form-control" required>
                             <option value = "" disabled selected>Genre</option>
                             @for(discGenre<-discGenres){
                             <option value = "@discGenre.getDiscGenreId">@discGenre.getGenreName</option>
@@ -95,7 +95,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "disctype" class = "form-control">
+                        <select name = "disctype" class = "form-control" required>
                             <option value = "" disabled selected>Disc Type</option>
                             @for(disctype<-disctypes){
                             <option value = "@disctype.getDiscTypeId">@disctype.getDiscTypeName</option>
@@ -104,7 +104,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "retailer" class = "form-control">
+                        <select name = "retailer" class = "form-control" required>
                             <option value = "" disabled selected>Retailer</option>
                             @for(retailer<-retailers){
                             <option value = "@retailer.getRetailerId">@retailer.getRetailerName</option>
@@ -113,11 +113,11 @@
                         <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <input type = "number" min = "0.00" step = "0.01" name = "discprice" placeholder = "Disc Price" class = "form-control">
+                        <input type = "number" min = "0.00" step = "0.01" name = "discprice" required placeholder = "Disc Price" class = "form-control">
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "bookshelf" class = "form-control">
+                        <select name = "bookshelf" class = "form-control" required>
                             <option value = "" disabled selected>Bookshelf</option>
                             @for(shelf<-shelves){
                             <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>

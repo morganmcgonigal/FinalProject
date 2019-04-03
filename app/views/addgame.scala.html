@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>RegistrationForm_v1 by Colorlib</title>
+        <title>storefully - Adding a Game</title>
         <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
         <script src = "/assets/lib/jquery/jquery.min.js"></script>
         <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -82,11 +82,11 @@
                     @helper.CSRF.formField
                     <h3>Add a Game</h3>
                     <div class = "form-wrapper">
-                        <input type = "text" name = "gamename" placeholder = "Game Name" class = "form-control">
+                        <input type = "text" name = "gamename" placeholder = "Game Name" class = "form-control" required>
                         <i class = "zmdi zmdi-account"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "consolename" class = "form-control">
+                        <select name = "consolename" class = "form-control" required>
                             <option value = "" disabled selected>Console</option>
                             @for(consolename<-consoleNames){
                             <option value = "@consolename.getConsoleId">@consolename.getConsoleName</option>
@@ -95,11 +95,11 @@
                         <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <input type = "number" min = "0.00" step = "0.01"  name = "gameprice" placeholder = "Game Price" class = "form-control">
+                        <input type = "number" min = "0.00" step = "0.01"  name = "gameprice" required placeholder = "Game Price" class = "form-control">
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "genre" class = "form-control">
+                        <select name = "genre" class = "form-control" required>
                             <option value = "" disabled selected>Genre</option>
                             @for(genre<-genres){
                             <option value = "@genre.getGameGenreId">@genre.getGenreName</option>
@@ -108,7 +108,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "gametype" class = "form-control">
+                        <select name = "gametype" class = "form-control" required>
                             <option value = "" disabled selected>Game Type</option>
                             @for(gametype<-gametypes){
                             <option value = "@gametype.getGameTypeId">@gametype.getGameTypeName</option>
@@ -117,7 +117,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "retailer" class = "form-control">
+                        <select name = "retailer" class = "form-control" required>
                             <option value = "" disabled selected>Retailer</option>
                             @for(retailer<-retailers){
                             <option value = "@retailer.getRetailerId">@retailer.getRetailerName</option>
@@ -126,7 +126,7 @@
                         <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "bookshelf" class = "form-control">
+                        <select name = "bookshelf" class = "form-control" required>
                             <option value = "" disabled selected>Bookshelf</option>
                             @for(shelf<-shelves){
                             <option value = "@shelf.getBookshelfId">@shelf.getBookshelfName</option>

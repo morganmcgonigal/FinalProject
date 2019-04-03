@@ -23,15 +23,4 @@ public class BookshelfController extends Controller {
         this.formFactory = formFactory;
         this.db = db;
     }
-
-    @Transactional(readOnly = true)
-    public Result getBookshelf(){
-        TypedQuery<Bookshelf> bookshelfQuery =
-                db.em().createQuery(
-                        "SELECT b FROM Bookshelf b ORDER BY bookshelfid",
-                        Bookshelf.class);
-        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
-
-        return ok(views.html.bookshelf.render(bookshelves));
-    }
 }
