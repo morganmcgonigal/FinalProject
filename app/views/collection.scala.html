@@ -26,99 +26,106 @@
 
     <body>
 
-        <!-- Navigation -->
-        <div class = "nav-side-menu">
-            <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
-            <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
+        <form class = "form-inline">
+            <!-- Navigation -->
+            <div class = "nav-side-menu">
+                <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
+                <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
 
-            <div class = "menu-list">
+                <div class = "menu-list">
 
-                <ul id = "menu-content" class = "menu-content collapse out">
-                    <li>
-                        <a href = "/" class = "ml-2">
-                            Home <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
-                        </a>
-                    </li>
+                    <ul id = "menu-content" class = "menu-content collapse out">
+                        <li>
+                            <a href = "/" class = "ml-2">
+                                Home <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
+                            </a>
+                        </li>
 
-                    <li data-toggle = "collapse" data-target = "#service" class = "collapsed active">
-                        <a href = "#" class = "ml-2">Collections
-                            <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
-                        </a>
-                    </li>
-                    <ul class = "sub-menu collapse" id = "service">
-                        @for(shelf<-shelves){
-                        <li><a href = "/collection/@shelf.getBookshelfId" class = "ml-2">@shelf.getBookshelfName
-                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
-                            </div>
-                        </a></li>
-                        }
+                        <li data-toggle = "collapse" data-target = "#service" class = "collapsed active">
+                            <a href = "#" class = "ml-2">Collections
+                                <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
+                            </a>
+                        </li>
+                        <ul class = "sub-menu collapse" id = "service">
+                            @for(shelf<-shelves){
+                            <li><a href = "/collection/@shelf.getBookshelfId" class = "ml-2">@shelf.getBookshelfName
+                                <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                                </div>
+                            </a></li>
+                            }
+
+                        </ul>
+
+                        <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
+                            <a href = "#" class = "ml-2">Add Media
+                                <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
+                            </a>
+                        </li>
+                        <ul class = "sub-menu collapse" id = "products">
+                            <li><a href = "/addbook" class = "ml-2">Add a Book
+                                <div class = "float-right"><i class="fas fa-book"></i></div>
+                            </a></li>
+                            <li><a href = "/adddisc" class = "ml-2">Add a Disc
+                                <div class = "float-right"><i class="fas fa-film"></i></div>
+                            </a></li>
+                            <li><a href = "/addalbum" class = "ml-2">Add an Album
+                                <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
+                            </a></li>
+                            <li><a href = "/addgame" class = "ml-2">Add a Game
+                                <div class = "float-right"><i class="fas fa-gamepad"></i></div>
+                            </a></li>
+                            <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
+                                <div class = "float-right"><i class="fas fa-book-open"></i>
+                                </div>
+                            </a></li>
+                        </ul>
+
+                        <li>
+                            <a href = "/collectionpdf" class = "ml-2">
+                                PDF <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href = "#Books" class = "ml-2">
+                                Books <div class = "float-right"><i class="fas fa-book"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href = "#Discs" class = "ml-2">
+                                Discs <div class = "float-right"><i class="fas fa-film"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href = "#Albums" class = "ml-2">
+                                Albums <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href = "#Games" class = "ml-2">
+                                Games <div class = "float-right"><i class="fas fa-gamepad"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href = "/deletecollection/@bookshelf.getBookshelfId" class = "ml-2">
+                                Delete Collection <div class="float-right"><i class="fas fa-ban"></i></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <input class = "form-control mt-5" type = "text" placeholder="Search Media" name = "name">
+                            <button class = "btn btn-info float-right btn-sm" type = "submit">Search</button>
+                        </li>
 
                     </ul>
-
-                    <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
-                        <a href = "#" class = "ml-2">Add Media
-                            <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
-                        </a>
-                    </li>
-                    <ul class = "sub-menu collapse" id = "products">
-                        <li><a href = "/addbook" class = "ml-2">Add a Book
-                            <div class = "float-right"><i class="fas fa-book"></i></div>
-                        </a></li>
-                        <li><a href = "/adddisc" class = "ml-2">Add a Disc
-                            <div class = "float-right"><i class="fas fa-film"></i></div>
-                        </a></li>
-                        <li><a href = "/addalbum" class = "ml-2">Add an Album
-                            <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
-                        </a></li>
-                        <li><a href = "/addgame" class = "ml-2">Add a Game
-                            <div class = "float-right"><i class="fas fa-gamepad"></i></div>
-                        </a></li>
-                        <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
-                            <div class = "float-right"><i class="fas fa-book-open"></i>
-                            </div>
-                        </a></li>
-                    </ul>
-
-                    <li>
-                        <a href = "/collectionpdf" class = "ml-2">
-                            PDF <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href = "#Books" class = "ml-2">
-                            Books <div class = "float-right"><i class="fas fa-book"></i></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href = "#Discs" class = "ml-2">
-                            Discs <div class = "float-right"><i class="fas fa-film"></i></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href = "#Albums" class = "ml-2">
-                            Albums <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href = "#Games" class = "ml-2">
-                            Games <div class = "float-right"><i class="fas fa-gamepad"></i></div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href = "/deletecollection/@bookshelf.getBookshelfId" class = "ml-2">
-                            Delete Collection <div class="float-right"><i class="fas fa-ban"></i></div>
-                        </a>
-                    </li>
-
-                </ul>
+                </div>
             </div>
-        </div>
+        </form>
 
         <!-- Page Content -->
         <div class = "container">
@@ -146,9 +153,11 @@
 
                 <!--START OF BOOKS-->
 
+                @if(books.size>0){
                 <div class = "col-md-12">
                     <h2 id = "Books" class = "pb-2 mb-4">Books</h2>
                 </div>
+                }
 
                 @for(book<-books){
                 @if(bookshelf.getBookshelfId==book.getBookshelfId){
@@ -171,9 +180,11 @@
 
                 <!--START OF DISCS-->
 
+                @if(discs.size>0){
                 <div class = "col-md-12">
                     <h2 id = "Discs" class = "pb-2 mb-4">Discs</h2>
                 </div>
+                }
 
                 @for(disc<-discs){
                 @if(bookshelf.getBookshelfId==disc.getBookshelfId){
@@ -196,9 +207,11 @@
 
                 <!--START OF ALBUMS-->
 
+                @if(albums.size>0){
                 <div class = "col-md-12">
                     <h2 id = "Albums" class = "pb-2 mb-4">Albums</h2>
                 </div>
+                }
 
                 @for(album<-albums){
                 @if(bookshelf.getBookshelfId==album.getBookshelfId){
@@ -220,10 +233,11 @@
                 }
 
                 <!--START OF GAMES-->
-
+                @if(games.size>0){
                 <div class = "col-md-12">
                     <h2 id = "Games" class = "pb-2 mb-4">Games</h2>
                 </div>
+                }
 
                 @for(game<-games){
                 @if(bookshelf.getBookshelfId==game.getBookshelfId){

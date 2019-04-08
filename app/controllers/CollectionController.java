@@ -26,6 +26,18 @@ public class CollectionController extends Controller {
 
     @Transactional(readOnly = true)
     public Result getCollection(int bookshelfId) {
+
+        DynamicForm form = formFactory.form().bindFromRequest();
+        String name = form.get("name");
+
+
+        if (name == null){
+            name = "";
+        }
+
+        name += "%" + "%";
+
+
         TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
                 "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
                 Bookshelf.class);
@@ -45,7 +57,9 @@ public class CollectionController extends Controller {
                         "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
                         "JOIN BookType bt ON bt.bookTypeId = b.bookTypeId " +
                         "JOIN Retailer r ON r.retailerId = b.retailerId " +
+                        "WHERE b.bookName LIKE :name OR b.authorName LIKE :name " +
                         "ORDER BY b.bookName", BookDetail.class);
+        bookDetailQuery.setParameter("name", name);
         List<BookDetail> books = bookDetailQuery.getResultList();
 
         TypedQuery<GameDetail> gameDetailQuery = db.em().createQuery(
@@ -57,7 +71,9 @@ public class CollectionController extends Controller {
                         "JOIN GameGenre ge ON ge.gameGenreId = g.gameGenreId " +
                         "JOIN Retailer r ON r.retailerId = g.retailerId " +
                         "JOIN Console c ON c.consoleId = g.consoleId " +
+                        "WHERE g.gameName LIKE :name OR c.consoleName LIKE :name " +
                         "ORDER BY g.gameName", GameDetail.class);
+        gameDetailQuery.setParameter("name", name);
         List<GameDetail> games = gameDetailQuery.getResultList();
 
 
@@ -69,7 +85,9 @@ public class CollectionController extends Controller {
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
                         "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
                         "JOIN Retailer r ON r.retailerId = d.retailerId " +
+                        "WHERE d.discName LIKE :name " +
                         "ORDER BY d.discName", DiscDetail.class);
+        discDetailQuery.setParameter("name", name);
         List<DiscDetail> discs = discDetailQuery.getResultList();
 
         TypedQuery<AlbumDetail> albumDetailQuery = db.em().createQuery(
@@ -78,8 +96,11 @@ public class CollectionController extends Controller {
                         "FROM Album a " +
                         "JOIN AlbumGenre ag ON ag.albumGenreId = a.albumGenreId " +
                         "JOIN Retailer r ON r.retailerId = a.retailerId " +
+                        "WHERE a.albumName LIKE :name OR a.artistName LIKE :name " +
                         "ORDER BY a.albumName", AlbumDetail.class);
+        albumDetailQuery.setParameter("name", name);
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
+
 
         return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
     }
