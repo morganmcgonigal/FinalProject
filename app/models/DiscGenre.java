@@ -9,7 +9,7 @@ public class DiscGenre {
     @Id
     private int discGenreId;
 
-    private String genreName;
+    private String discGenreName;
 
     public int getDiscGenreId() {
         return discGenreId;
@@ -19,11 +19,11 @@ public class DiscGenre {
         this.discGenreId = discGenreId;
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getDiscGenreName() {
+        return discGenreName;
     }
 
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
+    public void setDiscGenreName(String discGenreName) {
+        this.discGenreName = discGenreName;
     }
 }

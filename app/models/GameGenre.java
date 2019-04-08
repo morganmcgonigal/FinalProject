@@ -9,7 +9,7 @@ public class GameGenre {
     @Id
     private int gameGenreId;
 
-    private String genreName;
+    private String gameGenreName;
 
     public int getGameGenreId() {
         return gameGenreId;
@@ -19,11 +19,11 @@ public class GameGenre {
         this.gameGenreId = gameGenreId;
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getGameGenreName() {
+        return gameGenreName;
     }
 
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
+    public void setGameGenreName(String gameGenreName) {
+        this.gameGenreName = gameGenreName;
     }
 }

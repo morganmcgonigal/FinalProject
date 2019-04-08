@@ -39,7 +39,7 @@ public class CollectionController extends Controller {
 
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
-                        "b.bookPrice, bt.bookTypeName, g.genreName," +
+                        "b.bookPrice, bt.bookTypeName, g.bookGenreName," +
                         " r.retailerName, b.authorName, b.bookshelfId) " +
                         "FROM Book b " +
                         "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
@@ -50,7 +50,7 @@ public class CollectionController extends Controller {
 
         TypedQuery<GameDetail> gameDetailQuery = db.em().createQuery(
                 "SELECT NEW models.GameDetail(g.gameId, g.gamePrice, " +
-                        "g.gameName, gt.gameTypeName, ge.genreName, " +
+                        "g.gameName, gt.gameTypeName, ge.gameGenreName, " +
                         "r.retailerName, c.consoleName, g.bookshelfId) " +
                         "FROM Game g " +
                         "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
@@ -64,7 +64,7 @@ public class CollectionController extends Controller {
         TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
                 "SELECT NEW models.DiscDetail(d.discId, d.discName," +
                         "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.bookshelfId) " +
+                        "g.discGenreName, r.retailerName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
                         "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
@@ -74,7 +74,7 @@ public class CollectionController extends Controller {
 
         TypedQuery<AlbumDetail> albumDetailQuery = db.em().createQuery(
                 "SELECT NEW models.AlbumDetail(a.albumId, a.albumName, " +
-                        "a.albumPrice, ag.genreName, r.retailerName, a.artistName, a.bookshelfId) " +
+                        "a.albumPrice, ag.albumGenreName, r.retailerName, a.artistName, a.bookshelfId) " +
                         "FROM Album a " +
                         "JOIN AlbumGenre ag ON ag.albumGenreId = a.albumGenreId " +
                         "JOIN Retailer r ON r.retailerId = a.retailerId " +
@@ -101,7 +101,7 @@ public class CollectionController extends Controller {
 
         TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
                 "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
-                        "b.bookPrice, bt.bookTypeName, g.genreName," +
+                        "b.bookPrice, bt.bookTypeName, g.bookGenreName," +
                         " r.retailerName, b.authorName, b.bookshelfId) " +
                         "FROM Book b " +
                         "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
@@ -112,7 +112,7 @@ public class CollectionController extends Controller {
 
         TypedQuery<GameDetail> gameDetailQuery = db.em().createQuery(
                 "SELECT NEW models.GameDetail(g.gameId, g.gamePrice, " +
-                        "g.gameName, gt.gameTypeName, ge.genreName, " +
+                        "g.gameName, gt.gameTypeName, ge.gameGenreName, " +
                         "r.retailerName, c.consoleName, g.bookshelfId) " +
                         "FROM Game g " +
                         "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
@@ -126,7 +126,7 @@ public class CollectionController extends Controller {
         TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
                 "SELECT NEW models.DiscDetail(d.discId, d.discName," +
                         "d.discPrice, dt.discTypeName," +
-                        "g.genreName, r.retailerName, d.artistName, d.bookshelfId) " +
+                        "g.discGenreName, r.retailerName, d.artistName, d.bookshelfId) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
                         "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
@@ -136,7 +136,7 @@ public class CollectionController extends Controller {
 
         TypedQuery<AlbumDetail> albumDetailQuery = db.em().createQuery(
                 "SELECT NEW models.AlbumDetail(a.albumId, a.albumName, " +
-                        "a.albumPrice, ag.genreName, r.retailerName, a.artistName, a.bookshelfId) " +
+                        "a.albumPrice, ag.albumGenreName, r.retailerName, a.artistName, a.bookshelfId) " +
                         "FROM Album a " +
                         "JOIN AlbumGenre ag ON ag.albumGenreId = a.albumGenreId " +
                         "JOIN Retailer r ON r.retailerId = a.retailerId " +
@@ -144,6 +144,68 @@ public class CollectionController extends Controller {
         List<AlbumDetail> albums = albumDetailQuery.getResultList();
 
         return ok(views.html.collection.render(bookshelf, books, games, discs, albums, bookshelves));
+    }
+
+    @Transactional(readOnly = true)
+    public Result getCollectionPDF(int bookshelfId) {
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b WHERE bookshelfId = :bookshelfId",
+                Bookshelf.class);
+        bookshelfQuery.setParameter("bookshelfId", bookshelfId);
+        Bookshelf bookshelf = bookshelfQuery.getSingleResult();
+
+        TypedQuery<Bookshelf> bookshelfTypedQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b",Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfTypedQuery.getResultList();
+
+
+        TypedQuery<BookDetail> bookDetailQuery = db.em().createQuery(
+                "SELECT NEW models.BookDetail(b.bookId, b.bookName, " +
+                        "b.bookPrice, bt.bookTypeName, g.bookGenreName," +
+                        " r.retailerName, b.authorName, b.bookshelfId) " +
+                        "FROM Book b " +
+                        "JOIN BookGenre g ON g.bookGenreId = b.bookGenreId " +
+                        "JOIN BookType bt ON bt.bookTypeId = b.bookTypeId " +
+                        "JOIN Retailer r ON r.retailerId = b.retailerId " +
+                        "ORDER BY b.bookName", BookDetail.class);
+        List<BookDetail> books = bookDetailQuery.getResultList();
+
+        TypedQuery<GameDetail> gameDetailQuery = db.em().createQuery(
+                "SELECT NEW models.GameDetail(g.gameId, g.gamePrice, " +
+                        "g.gameName, gt.gameTypeName, ge.gameGenreName, " +
+                        "r.retailerName, c.consoleName, g.bookshelfId) " +
+                        "FROM Game g " +
+                        "JOIN GameType gt ON gt.gameTypeId = g.gameTypeId " +
+                        "JOIN GameGenre ge ON ge.gameGenreId = g.gameGenreId " +
+                        "JOIN Retailer r ON r.retailerId = g.retailerId " +
+                        "JOIN Console c ON c.consoleId = g.consoleId " +
+                        "ORDER BY g.gameName", GameDetail.class);
+        List<GameDetail> games = gameDetailQuery.getResultList();
+
+
+        TypedQuery<DiscDetail> discDetailQuery = db.em().createQuery(
+                "SELECT NEW models.DiscDetail(d.discId, d.discName," +
+                        "d.discPrice, dt.discTypeName," +
+                        "g.discGenreName, r.retailerName, d.bookshelfId) " +
+                        "FROM Disc d " +
+                        "JOIN DiscType dt ON dt.discTypeId = d.discTypeId " +
+                        "JOIN DiscGenre g ON g.discGenreId = d.discGenreId " +
+                        "JOIN Retailer r ON r.retailerId = d.retailerId " +
+                        "ORDER BY d.discName", DiscDetail.class);
+        List<DiscDetail> discs = discDetailQuery.getResultList();
+
+        TypedQuery<AlbumDetail> albumDetailQuery = db.em().createQuery(
+                "SELECT NEW models.AlbumDetail(a.albumId, a.albumName, " +
+                        "a.albumPrice, ag.albumGenreName, r.retailerName, a.artistName, a.bookshelfId) " +
+                        "FROM Album a " +
+                        "JOIN AlbumGenre ag ON ag.albumGenreId = a.albumGenreId " +
+                        "JOIN Retailer r ON r.retailerId = a.retailerId " +
+                        "ORDER BY a.albumName", AlbumDetail.class);
+        List<AlbumDetail> albums = albumDetailQuery.getResultList();
+
+
+
+        return ok(views.html.index.render(bookshelves));
     }
 
     @Transactional(readOnly = true)
@@ -523,6 +585,19 @@ public class CollectionController extends Controller {
         bookshelf.setBookshelfName(bookshelfName);
 
         db.em().persist(bookshelf);
+
+        TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
+                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                Bookshelf.class);
+        List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
+
+        return ok(views.html.index.render(bookshelves));
+    }
+
+    @Transactional
+    public Result getDeleteCollection(int bookshelfId){
+        Bookshelf bookshelf = db.em().find(Bookshelf.class, bookshelfId);
+        db.em().remove(bookshelf);
 
         TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
                 "SELECT b FROM Bookshelf b ORDER BY bookshelfId",

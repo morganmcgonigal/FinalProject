@@ -14,6 +14,12 @@ libraryDependencies += guice
 libraryDependencies += "org.webjars" % "bootstrap" % "4.3.1"
 libraryDependencies += "org.webjars.bower" % "chart.js" % "2.7.3"
 
+libraryDependencies += "com.itextpdf" % "kernel" % "7.1.1"
+libraryDependencies += "com.itextpdf" % "io" % "7.1.1"
+libraryDependencies += "com.itextpdf" % "layout" % "7.1.1"
+
+libraryDependencies += "org.webjars" % "font-awesome" % "5.8.1"
+
 //Database
 libraryDependencies += javaJpa
 libraryDependencies += javaJdbc

@@ -9,7 +9,7 @@ public class BookGenre {
     @Id
     private int bookGenreId;
 
-    private String genreName;
+    private String bookGenreName;
 
     public int getBookGenreId() {
         return bookGenreId;
@@ -19,11 +19,11 @@ public class BookGenre {
         this.bookGenreId = bookGenreId;
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getBookGenreName() {
+        return bookGenreName;
     }
 
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
+    public void setBookGenreName(String bookGenreName) {
+        this.bookGenreName = bookGenreName;
     }
 }

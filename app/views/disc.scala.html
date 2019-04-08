@@ -13,28 +13,29 @@
         <link rel = "stylesheet" href = "/assets/stylesheets/editdisc.css">
         <link rel = "stylesheet" href = "/assets/stylesheets/sidebar.css">
         <link rel = "stylesheet" href = "/assets/stylesheets/bodyfont.css">
+        <link rel = "stylesheet" href = "/assets/lib/font-awesome/css/all.min.css">
+
     </head>
 
     <body>
 
+        <!-- Navigation -->
         <div class = "nav-side-menu">
             <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
             <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
-            <i class = "fa fa-film"></i>
 
             <div class = "menu-list">
 
                 <ul id = "menu-content" class = "menu-content collapse out">
                     <li>
                         <a href = "/" class = "ml-2">
-                            Home
-                            <div class = "float-right mr-2"><img src = "/assets/images/home.png" width = "10px"></div>
+                            Home <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
                         </a>
                     </li>
 
-                    <li data-toggle = "collapse" data-target = "#service" class = "collapsed">
+                    <li data-toggle = "collapse" data-target = "#service" class = "collapsed active">
                         <a href = "#" class = "ml-2">Collections
-                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
                         </a>
                     </li>
                     <ul class = "sub-menu collapse" id = "service">
@@ -44,28 +45,29 @@
                             </div>
                         </a></li>
                         }
+
                     </ul>
 
                     <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
                         <a href = "#" class = "ml-2">Add Media
-                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
                         </a>
                     </li>
                     <ul class = "sub-menu collapse" id = "products">
                         <li><a href = "/addbook" class = "ml-2">Add a Book
-                            <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-book"></i></div>
                         </a></li>
                         <li><a href = "/adddisc" class = "ml-2">Add a Disc
-                            <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
-                        </a></li>
-                        <li><a href = "/addgame" class = "ml-2">Add a Game
-                            <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-film"></i></div>
                         </a></li>
                         <li><a href = "/addalbum" class = "ml-2">Add an Album
-                            <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
+                        </a></li>
+                        <li><a href = "/addgame" class = "ml-2">Add a Game
+                            <div class = "float-right"><i class="fas fa-gamepad"></i></div>
                         </a></li>
                         <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
-                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            <div class = "float-right"><i class="fas fa-book-open"></i>
                             </div>
                         </a></li>
                     </ul>
@@ -104,7 +106,7 @@
                     </div>
 
                     <div class = "form-wrapper">
-                        <input type = "text" value = "@discGenre.getGenreName" class = "form-control">
+                        <input type = "text" value = "@discGenre.getDiscGenreName" class = "form-control">
                         <i class = "zmdi zmdi-account"></i>
                     </div>
 

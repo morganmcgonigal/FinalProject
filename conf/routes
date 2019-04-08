@@ -41,14 +41,14 @@ GET     /deletedisc/:id             controllers.CollectionController.getDeleteDi
 GET     /deletegame/:id             controllers.CollectionController.getDeleteGame(id : Integer)
 GET     /deletealbum/:id            controllers.CollectionController.getDeleteAlbum(id : Integer)
 
+GET     /deletecollection/:id       controllers.CollectionController.getDeleteCollection(id : Integer)
+
 GET     /book/:id                   controllers.BookController.getBook(id : Integer)
-GET     /album/:id                   controllers.AlbumController.getAlbum(id : Integer)
+GET     /album/:id                  controllers.AlbumController.getAlbum(id : Integer)
 GET     /disc/:id                   controllers.DiscController.getDisc(id : Integer)
 GET     /game/:id                   controllers.GameController.getGame(id : Integer)
 
-GET     /editdemo/:id               controllers.BookController.getDemo(id : Integer)
-
-GET     /chartdata                  controllers.ChartTestController.getChart
+GET     /collectionpdf              controllers.FinalCollectionController.getDocument
 
 
 

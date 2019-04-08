@@ -12,7 +12,7 @@ public class AlbumGenre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int albumGenreId;
 
-    private String genreName;
+    private String albumGenreName;
 
     public int getAlbumGenreId() {
         return albumGenreId;
@@ -22,11 +22,11 @@ public class AlbumGenre {
         this.albumGenreId = albumGenreId;
     }
 
-    public String getGenreName() {
-        return genreName;
+    public String getAlbumGenreName() {
+        return albumGenreName;
     }
 
-    public void setGenreName(String genreName) {
-        this.genreName = genreName;
+    public void setAlbumGenreName(String albumGenreName) {
+        this.albumGenreName = albumGenreName;
     }
 }

@@ -13,6 +13,7 @@
 
         <!-- Bootstrap core CSS -->
         <link rel = "stylesheet" href = "/assets/lib/bootstrap/css/bootstrap.min.css">
+        <link rel = "stylesheet" href = "/assets/lib/font-awesome/css/all.min.css">
         <script src = "/assets/lib/jquery/jquery.min.js"></script>
         <script src = "/assets/lib/bootstrap/js/bootstrap.min.js"></script>
         <link rel = "stylesheet" href = "/assets/stylesheets/main.css">
@@ -29,20 +30,19 @@
         <div class = "nav-side-menu">
             <div class = "brand"><img src = "/assets/images/finallogo2.png" width = "150px"></div>
             <i class = "fa fa-bars fa-2x toggle-btn" data-toggle = "collapse" data-target = "#menu-content"></i>
-            <i class = "fa fa-film"></i>
 
             <div class = "menu-list">
 
                 <ul id = "menu-content" class = "menu-content collapse out">
                     <li>
                         <a href = "/" class = "ml-2">
-                            Home <div class = "float-right mr-2"><img src = "/assets/images/home.png" width = "10px"></div>
+                            Home <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
                         </a>
                     </li>
 
                     <li data-toggle = "collapse" data-target = "#service" class = "collapsed active">
                         <a href = "#" class = "ml-2">Collections
-                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
                         </a>
                     </li>
                     <ul class = "sub-menu collapse" id = "service">
@@ -57,50 +57,62 @@
 
                     <li data-toggle = "collapse" data-target = "#products" class = "collapsed">
                         <a href = "#" class = "ml-2">Add Media
-                            <div class = "float-right mr-2"><img src = "/assets/images/arrow.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-angle-double-down"></i></div>
                         </a>
                     </li>
                     <ul class = "sub-menu collapse" id = "products">
                         <li><a href = "/addbook" class = "ml-2">Add a Book
-                            <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-book"></i></div>
                         </a></li>
                         <li><a href = "/adddisc" class = "ml-2">Add a Disc
-                            <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
-                        </a></li>
-                        <li><a href = "/addgame" class = "ml-2">Add a Game
-                            <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-film"></i></div>
                         </a></li>
                         <li><a href = "/addalbum" class = "ml-2">Add an Album
-                            <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                            <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
+                        </a></li>
+                        <li><a href = "/addgame" class = "ml-2">Add a Game
+                            <div class = "float-right"><i class="fas fa-gamepad"></i></div>
                         </a></li>
                         <li><a href = "/addbookshelf" class = "ml-2">Add a Bookshelf
-                            <div class = "float-right mr-2"><img src = "/assets/images/bookshelf.png" width = "10px">
+                            <div class = "float-right"><i class="fas fa-book-open"></i>
                             </div>
                         </a></li>
                     </ul>
 
+                    <li>
+                        <a href = "/collectionpdf" class = "ml-2">
+                            PDF <div class = "float-right mr-1"><i class="fas fa-home"></i></div>
+                        </a>
+                    </li>
+
 
                     <li>
                         <a href = "#Books" class = "ml-2">
-                            Books <div class = "float-right mr-2"><img src = "/assets/images/book.png" width = "10px"></div>
+                            Books <div class = "float-right"><i class="fas fa-book"></i></div>
                         </a>
                     </li>
 
                     <li>
                         <a href = "#Discs" class = "ml-2">
-                            Discs <div class = "float-right mr-2"><img src = "/assets/images/film.png" width = "10px"></div>
+                            Discs <div class = "float-right"><i class="fas fa-film"></i></div>
                         </a>
                     </li>
 
                     <li>
                         <a href = "#Albums" class = "ml-2">
-                            Albums <div class = "float-right mr-2"><img src = "/assets/images/album.png" width = "10px"></div>
+                            Albums <div class = "float-right"><i class="fas fa-compact-disc"></i></div>
                         </a>
                     </li>
 
                     <li>
                         <a href = "#Games" class = "ml-2">
-                            Games <div class = "float-right mr-2"><img src = "/assets/images/game.png" width = "10px"></div>
+                            Games <div class = "float-right"><i class="fas fa-gamepad"></i></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href = "/deletecollection/@bookshelf.getBookshelfId" class = "ml-2">
+                            Delete Collection <div class="float-right"><i class="fas fa-ban"></i></div>
                         </a>
                     </li>
 
