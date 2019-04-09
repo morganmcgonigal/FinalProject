@@ -20,6 +20,7 @@ public class Album {
     private int albumGenreId;
     private int bookshelfId;
     private int retailerId;
+    private BigDecimal faceValue;
 
     public int getAlbumId() {
         return albumId;
@@ -79,5 +80,13 @@ public class Album {
 
     public void setRetailerId(int retailerId) {
         this.retailerId = retailerId;
+    }
+
+    public BigDecimal getFaceValue() {
+        return faceValue;
+    }
+
+    public void setFaceValue(BigDecimal faceValue) {
+        this.faceValue = faceValue;
     }
 }

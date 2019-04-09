@@ -16,10 +16,13 @@ public class FinalAlbumCollectionTable {
     private BigDecimal albumPrice;
     private String albumGenreName;
     private String retailerName;
+    private BigDecimal faceValue;
+    private BigDecimal totalPrice;
 
     public FinalAlbumCollectionTable(int bookshelfId, int albumId, String albumName,
                                      String artistName, BigDecimal albumPrice,
-                                     String albumGenreName, String retailerName) {
+                                     String albumGenreName, String retailerName, BigDecimal faceValue,
+                                     BigDecimal totalPrice) {
         this.bookshelfId = bookshelfId;
         this.albumId = albumId;
         this.albumName = albumName;
@@ -27,6 +30,8 @@ public class FinalAlbumCollectionTable {
         this.albumPrice = albumPrice;
         this.albumGenreName = albumGenreName;
         this.retailerName = retailerName;
+        this.faceValue = faceValue;
+        this.totalPrice = totalPrice;
     }
 
     public int getBookshelfId() {
@@ -55,5 +60,13 @@ public class FinalAlbumCollectionTable {
 
     public String getRetailerName() {
         return retailerName;
+    }
+
+    public BigDecimal getFaceValue() {
+        return faceValue;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 }

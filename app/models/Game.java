@@ -18,6 +18,7 @@ public class Game {
     private int retailerId;
     private int consoleId;
     private int bookshelfId;
+    private BigDecimal faceValue;
 
     public int getGameId() {
         return gameId;
@@ -85,5 +86,13 @@ public class Game {
 
     public void setBookshelfId(int bookshelfId) {
         this.bookshelfId = bookshelfId;
+    }
+
+    public BigDecimal getFaceValue() {
+        return faceValue;
+    }
+
+    public void setFaceValue(BigDecimal faceValue) {
+        this.faceValue = faceValue;
     }
 }

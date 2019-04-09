@@ -53,7 +53,7 @@ public class PDF {
         bookTable.addHeaderCell("Type");
         bookTable.addHeaderCell("Genre");
         bookTable.addHeaderCell("Retailer");
-        bookTable.addHeaderCell("Price");
+        bookTable.addHeaderCell("Paid Price");
 
         for (FinalCollectionTable finalCollectionTable : finalCollectionTables){
             bookTable.addCell(finalCollectionTable.getBookName());
@@ -79,7 +79,7 @@ public class PDF {
         albumTable.addHeaderCell("Artist");
         albumTable.addHeaderCell("Genre");
         albumTable.addHeaderCell("Retailer");
-        albumTable.addHeaderCell("Price");
+        albumTable.addHeaderCell("Paid Price");
 
         for(FinalAlbumCollectionTable finalAlbumCollectionTable : finalAlbumCollectionTables){
             albumTable.addCell(finalAlbumCollectionTable.getAlbumName());
@@ -104,7 +104,7 @@ public class PDF {
         discTable.addHeaderCell("Type");
         discTable.addHeaderCell("Genre");
         discTable.addHeaderCell("Retailer");
-        discTable.addHeaderCell("Price");
+        discTable.addHeaderCell("Paid Price");
 
         for(FinalDiscCollectionTable finalDiscCollectionTable : finalDiscCollectionTables){
             discTable.addCell(finalDiscCollectionTable.getDiscName());
@@ -131,7 +131,7 @@ public class PDF {
         gameTable.addHeaderCell("Type");
         gameTable.addHeaderCell("Genre");
         gameTable.addHeaderCell("Retailer");
-        gameTable.addHeaderCell("Price");
+        gameTable.addHeaderCell("Paid Price");
 
         for(FinalGameCollectionTable finalGameCollectionTable : finalGameCollectionTables){
             gameTable.addCell(finalGameCollectionTable.getGameName());

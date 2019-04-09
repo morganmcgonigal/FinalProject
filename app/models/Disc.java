@@ -17,6 +17,7 @@ public class Disc {
     private int discGenreId;
     private int retailerId;
     private int bookshelfId;
+    private BigDecimal faceValue;
 
     public int getDiscId() {
         return discId;
@@ -78,5 +79,11 @@ public class Disc {
         this.bookshelfId = bookshelfId;
     }
 
+    public BigDecimal getFaceValue() {
+        return faceValue;
+    }
 
+    public void setFaceValue(BigDecimal faceValue) {
+        this.faceValue = faceValue;
+    }
 }

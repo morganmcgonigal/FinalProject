@@ -31,42 +31,46 @@ public class FinalCollectionController extends Controller {
 
         List<FinalCollectionTable> finalCollectionTableTypedQuery = db.em().createQuery(
                 "SELECT NEW models.FinalCollectionTable(b.bookshelfId, b.bookId, b.bookName, b.bookPrice, bt.bookTypeName, " +
-                        "bg.bookGenreName, r.retailerName, b.authorName) " +
+                        "bg.bookGenreName, r.retailerName, b.authorName, b.faceValue, SUM(b.bookPrice)) " +
                         "FROM Book b " +
                         "JOIN BookType bt ON b.bookTypeId = bt.bookTypeId " +
                         "JOIN BookGenre bg ON b.bookGenreId = bg.bookGenreId " +
                         "JOIN Retailer r ON b.retailerId = r.retailerId " +
                         "WHERE b.bookshelfId = :bookshelfId " +
+                        "GROUP BY b.bookName " +
                         "ORDER BY b.bookName", FinalCollectionTable.class).setParameter("bookshelfId", bookshelfId).getResultList();
 
         List<FinalAlbumCollectionTable> finalAlbumCollectionTables = db.em().createQuery(
                 "SELECT NEW models.FinalAlbumCollectionTable(a.bookshelfId, a.albumId, a.albumName, " +
-                        "a.artistName, a.albumPrice, ag.albumGenreName, r.retailerName) " +
+                        "a.artistName, a.albumPrice, ag.albumGenreName, r.retailerName, a.faceValue, SUM(a.albumPrice)) " +
                         "FROM Album a " +
                         "JOIN AlbumGenre ag ON a.albumGenreId = ag.albumGenreId " +
                         "JOIN Retailer r ON a.retailerId = r.retailerId " +
                         "WHERE a.bookshelfId = :bookshelfId " +
+                        "GROUP BY a.albumName " +
                         "ORDER BY a.albumName", FinalAlbumCollectionTable.class).setParameter("bookshelfId", bookshelfId).getResultList();
 
         List<FinalDiscCollectionTable> finalDiscCollectionTables = db.em().createQuery(
                 "SELECT NEW models.FinalDiscCollectionTable(d.bookshelfId, d.discId, d.discName, " +
-                        "d.discPrice, dt.discTypeName, r.retailerName, dg.discGenreName) " +
+                        "d.discPrice, dt.discTypeName, r.retailerName, dg.discGenreName, d.faceValue, SUM(d.discPrice)) " +
                         "FROM Disc d " +
                         "JOIN DiscType dt ON d.discTypeId = dt.discTypeId " +
                         "JOIN DiscGenre dg ON d.discGenreId = dg.discGenreId " +
                         "JOIN Retailer r ON d.retailerId = r.retailerId " +
                         "WHERE d.bookshelfId = :bookshelfId " +
+                        "GROUP BY d.discName " +
                         "ORDER BY d.discName", FinalDiscCollectionTable.class).setParameter("bookshelfId", bookshelfId).getResultList();
 
         List<FinalGameCollectionTable> finalGameCollectionTables = db.em().createQuery(
                 "SELECT NEW models.FinalGameCollectionTable(g.bookshelfId, g.gameId, g.gameName, g.gamePrice, " +
-                        "gt.gameTypeName, c.consoleName, r.retailerName, gg.gameGenreName) " +
+                        "gt.gameTypeName, c.consoleName, r.retailerName, gg.gameGenreName, g.faceValue, SUM(g.gamePrice)) " +
                         "FROM Game g " +
                         "JOIN GameType gt ON g.gameTypeId = gt.gameTypeId " +
                         "JOIN Console c ON c.consoleId = g.consoleId " +
                         "JOIN Retailer r ON r.retailerId = g.retailerId " +
                         "JOIN GameGenre gg ON g.gameGenreId = gg.gameGenreId " +
                         "WHERE g.bookshelfId = :bookshelfId " +
+                        "GROUP BY g.gameName " +
                         "ORDER BY g.gameName", FinalGameCollectionTable.class).setParameter("bookshelfId", bookshelfId).getResultList();
 
         return ok(PDF.getPDF(finalCollectionTableTypedQuery, finalAlbumCollectionTables, finalDiscCollectionTables, finalGameCollectionTables)).as("application/pdf");

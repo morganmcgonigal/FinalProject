@@ -21,6 +21,7 @@ public class Book {
     private int retailerId;
     private String authorName;
     private int bookshelfId;
+    private BigDecimal faceValue;
 
     public int getBookId() {
         return bookId;
@@ -88,5 +89,13 @@ public class Book {
 
     public void setBookshelfId(int bookshelfId) {
         this.bookshelfId = bookshelfId;
+    }
+
+    public BigDecimal getFaceValue() {
+        return faceValue;
+    }
+
+    public void setFaceValue(BigDecimal faceValue) {
+        this.faceValue = faceValue;
     }
 }

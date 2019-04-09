@@ -17,8 +17,9 @@ public class AlbumDetail {
     private String retailerName;
     private String artistName;
     private int bookshelfId;
+    private BigDecimal faceValue;
 
-    public AlbumDetail(int albumId, String albumName, BigDecimal albumPrice, String genreName, String retailerName, String artistName, int bookshelfId) {
+    public AlbumDetail(int albumId, String albumName, BigDecimal albumPrice, String genreName, String retailerName, String artistName, int bookshelfId, BigDecimal faceValue) {
         this.albumId = albumId;
         this.albumName = albumName;
         this.albumPrice = albumPrice;
@@ -26,6 +27,7 @@ public class AlbumDetail {
         this.retailerName = retailerName;
         this.artistName = artistName;
         this.bookshelfId = bookshelfId;
+        this.faceValue = faceValue;
     }
 
     public int getAlbumId() {
@@ -50,10 +52,6 @@ public class AlbumDetail {
 
     public void setAlbumPrice(BigDecimal albumPrice) {
         this.albumPrice = albumPrice;
-    }
-
-    public String getFormattedAlbumPrice(){
-        return NumberFormat.getCurrencyInstance().format(albumPrice);
     }
 
     public String getGenreName() {
@@ -86,5 +84,13 @@ public class AlbumDetail {
 
     public void setBookshelfId(int bookshelfId) {
         this.bookshelfId = bookshelfId;
+    }
+
+    public BigDecimal getFaceValue() {
+        return faceValue;
+    }
+
+    public void setFaceValue(BigDecimal faceValue) {
+        this.faceValue = faceValue;
     }
 }
