@@ -25,7 +25,9 @@ public class MainController extends Controller {
     @Transactional
     public Result getIndex() {
         TypedQuery<Bookshelf> bookshelfQuery = db.em().createQuery(
-                "SELECT b FROM Bookshelf b ORDER BY bookshelfId",
+                "SELECT b " +
+                        "FROM Bookshelf b " +
+                        "ORDER BY bookshelfId",
                 Bookshelf.class);
         List<Bookshelf> bookshelves = bookshelfQuery.getResultList();
 

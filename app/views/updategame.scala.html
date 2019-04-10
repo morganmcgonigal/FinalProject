@@ -84,12 +84,12 @@
                     @helper.CSRF.formField
                     <h3>Editing:  @game.getGameName</h3>
                     <div class = "form-wrapper">
-                        <input type = "text" value = "@game.getGameName" name = "gamename" class = "form-control">
+                        <input type = "text" value = "@game.getGameName" name = "gamename" class = "form-control" required>
                         <i class = "zmdi zmdi-account"></i>
                     </div>
 
                     <div class = "form-wrapper">
-                        <select name = "console" class = "form-control">
+                        <select name = "console" class = "form-control" required>
                             @for(console<-consoles){
                             @if(console.getConsoleId==game.getConsoleId){
                             <option value = "@console.getConsoleId" selected>@console.getConsoleName</option>
@@ -101,7 +101,7 @@
                     </div>
 
                     <div class = "form-wrapper">
-                        <select name = "gametype" class = "form-control">
+                        <select name = "gametype" class = "form-control" required>
                             @for(gametype<-gametypes){
                             @if(gametype.getGameTypeId==game.getGameTypeId){
                             <option value = "@gametype.getGameTypeId" selected>@gametype.getGameTypeName</option>
@@ -112,7 +112,7 @@
                         </select>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "genre" class = "form-control">
+                        <select name = "genre" class = "form-control" required>
                             @for(genre<-genres){
                             @if(genre.getGameGenreId==game.getGameGenreId){
                             <option value = "@genre.getGameGenreId" selected>@genre.getGameGenreName</option>
@@ -124,7 +124,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "retailer" class = "form-control">
+                        <select name = "retailer" class = "form-control" required>
                             @for(retailer<-retailers){
                             @if(retailer.getRetailerId==game.getRetailerId){
                             <option value = "@retailer.getRetailerId" selected>@retailer.getRetailerName</option>
@@ -136,7 +136,7 @@
                         <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <input type = "number" min = "0.00" step = "0.01"  name = "gameprice" value = "@game.getGamePrice" class = "form-control">
+                        <input type = "number" min = "0.00" step = "0.01" required  name = "gameprice" value = "@game.getGamePrice" class = "form-control">
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
@@ -144,7 +144,7 @@
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "bookshelf" class = "form-control">
+                        <select name = "bookshelf" class = "form-control" required>
                             @for(shelf<-shelves){
                             @if(shelf.getBookshelfId==game.getBookshelfId){
                             <option value = "@shelf.getBookshelfId" selected>@shelf.getBookshelfName</option>

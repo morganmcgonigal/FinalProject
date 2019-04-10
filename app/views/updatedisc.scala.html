@@ -84,11 +84,11 @@
                     @helper.CSRF.formField
                     <h3>Editing:  @disc.getDiscName</h3>
                     <div class = "form-wrapper">
-                        <input type = "text" value = "@disc.getDiscName" name = "discname" class = "form-control">
+                        <input type = "text" value = "@disc.getDiscName" name = "discname" class = "form-control" required>
                         <i class = "zmdi zmdi-account"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "disctype" class = "form-control">
+                        <select name = "disctype" class = "form-control" required>
                             @for(disctype<-disctypes){
                             @if(disctype.getDiscTypeId==disc.getDiscTypeId){
                             <option value = "@disctype.getDiscTypeId" selected>@disctype.getDiscTypeName</option>
@@ -99,7 +99,7 @@
                         </select>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "genre" class = "form-control">
+                        <select name = "genre" class = "form-control" required>
                             @for(discGenre<-discGenres){
                             @if(discGenre.getDiscGenreId==disc.getDiscGenreId){
                             <option value = "@discGenre.getDiscGenreId" selected>@discGenre.getDiscGenreName</option>
@@ -111,7 +111,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "retailer" class = "form-control">
+                        <select name = "retailer" class = "form-control" required>
                             @for(retailer<-retailers){
                             @if(retailer.getRetailerId==disc.getRetailerId){
                             <option value = "@retailer.getRetailerId" selected>@retailer.getRetailerName</option>
@@ -123,7 +123,7 @@
                         <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <input type = "number" min = "0.00" step = "0.01"  name = "discprice" value = "@disc.getDiscPrice" class = "form-control">
+                        <input type = "number" min = "0.00" step = "0.01"  name = "discprice" required value = "@disc.getDiscPrice" class = "form-control">
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
@@ -131,7 +131,7 @@
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "bookshelf" class = "form-control">
+                        <select name = "bookshelf" class = "form-control" required>
                             @for(shelf<-shelves){
                             @if(shelf.getBookshelfId==disc.getBookshelfId){
                             <option value = "@shelf.getBookshelfId" selected>@shelf.getBookshelfName</option>

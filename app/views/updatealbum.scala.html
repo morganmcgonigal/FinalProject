@@ -84,15 +84,15 @@
                     @helper.CSRF.formField
                     <h3>Editing:  @album.getAlbumName</h3>
                     <div class = "form-wrapper">
-                        <input type = "text" value = "@album.getAlbumName" name = "albumname" class = "form-control">
+                        <input type = "text" value = "@album.getAlbumName" name = "albumname" class = "form-control" required>
                         <i class = "zmdi zmdi-account"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <input type = "text" name = "artistname" value="@album.getArtistName" class = "form-control">
+                        <input type = "text" name = "artistname" value="@album.getArtistName" class = "form-control" required>
                         <i class = "zmdi zmdi-account"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "genre" class = "form-control">
+                        <select name = "genre" class = "form-control" required>
                             @for(albumGenre<-albumGenres){
                             @if(albumGenre.getAlbumGenreId==album.getAlbumGenreId){
                             <option value = "@albumGenre.getAlbumGenreId" selected>@albumGenre.getAlbumGenreName</option>
@@ -104,7 +104,7 @@
                         <i class = "zmdi zmdi-caret-down"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "retailer" class = "form-control">
+                        <select name = "retailer" class = "form-control" required>
                             @for(retailer<-retailers){
                             @if(retailer.getRetailerId==album.getRetailerId){
                             <option value = "@retailer.getRetailerId" selected>@retailer.getRetailerName</option>
@@ -116,7 +116,7 @@
                         <i class = "zmdi zmdi-caret-down" style = "font-size: 17px"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <input type = "number" min = "0.00" step = "0.01"  name = "albumprice" value = "@album.getAlbumPrice" class = "form-control">
+                        <input type = "number" min = "0.00" step = "0.01"  name = "albumprice" required value = "@album.getAlbumPrice" class = "form-control">
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
@@ -124,7 +124,7 @@
                         <i class = "zmdi zmdi-lock"></i>
                     </div>
                     <div class = "form-wrapper">
-                        <select name = "bookshelf" class = "form-control">
+                        <select name = "bookshelf" class = "form-control" required>
                             @for(shelf<-shelves){
                             @if(shelf.getBookshelfId==album.getBookshelfId){
                             <option value = "@shelf.getBookshelfId" selected>@shelf.getBookshelfName</option>

@@ -46,7 +46,9 @@ public class PDF {
         paragraph1.add(bookCollectionHeader);
         paragraph1.add(space);
 
-        Table bookTable = new Table(6);
+
+
+        Table bookTable = new Table(7);
         bookTable.setWidth(UnitValue.createPercentValue(100));
         bookTable.addHeaderCell("Name");
         bookTable.addHeaderCell("Author");
@@ -54,6 +56,7 @@ public class PDF {
         bookTable.addHeaderCell("Genre");
         bookTable.addHeaderCell("Retailer");
         bookTable.addHeaderCell("Paid Price");
+        bookTable.addHeaderCell("Face Value");
 
         for (FinalCollectionTable finalCollectionTable : finalCollectionTables){
             bookTable.addCell(finalCollectionTable.getBookName());
@@ -63,6 +66,8 @@ public class PDF {
             bookTable.addCell(finalCollectionTable.getRetailerName());
             String priceString = finalCollectionTable.getBookPrice().toString();
             bookTable.addCell(priceString);
+            String faceString = finalCollectionTable.getFaceValue().toString();
+            bookTable.addCell(faceString);
         }
 
         Text albumCollectionHeader = new Text("Albums");
@@ -73,13 +78,14 @@ public class PDF {
         paragraph2.add(albumCollectionHeader);
         paragraph2.add(space);
 
-        Table albumTable = new Table(5);
+        Table albumTable = new Table(6);
         albumTable.setWidth(UnitValue.createPercentValue(100));
         albumTable.addHeaderCell("Name");
         albumTable.addHeaderCell("Artist");
         albumTable.addHeaderCell("Genre");
         albumTable.addHeaderCell("Retailer");
         albumTable.addHeaderCell("Paid Price");
+        albumTable.addHeaderCell("Face Value");
 
         for(FinalAlbumCollectionTable finalAlbumCollectionTable : finalAlbumCollectionTables){
             albumTable.addCell(finalAlbumCollectionTable.getAlbumName());
@@ -88,6 +94,8 @@ public class PDF {
             albumTable.addCell(finalAlbumCollectionTable.getRetailerName());
             String priceString = finalAlbumCollectionTable.getAlbumPrice().toString();
             albumTable.addCell(priceString);
+            String faceString = finalAlbumCollectionTable.getFaceValue().toString();
+            albumTable.addCell(faceString);
         }
 
         Text discCollectionHeader = new Text("Discs");
@@ -98,13 +106,14 @@ public class PDF {
         paragraph3.add(discCollectionHeader);
         paragraph3.add(space);
 
-        Table discTable = new Table(5);
+        Table discTable = new Table(6);
         discTable.setWidth(UnitValue.createPercentValue(100));
         discTable.addHeaderCell("Name");
         discTable.addHeaderCell("Type");
         discTable.addHeaderCell("Genre");
         discTable.addHeaderCell("Retailer");
         discTable.addHeaderCell("Paid Price");
+        discTable.addHeaderCell("Face Value");
 
         for(FinalDiscCollectionTable finalDiscCollectionTable : finalDiscCollectionTables){
             discTable.addCell(finalDiscCollectionTable.getDiscName());
@@ -113,6 +122,8 @@ public class PDF {
             discTable.addCell(finalDiscCollectionTable.getRetailerName());
             String priceString = finalDiscCollectionTable.getDiscPrice().toString();
             discTable.addCell(priceString);
+            String faceString = finalDiscCollectionTable.getFaceValue().toString();
+            discTable.addCell(faceString);
 
         }
 
@@ -124,7 +135,7 @@ public class PDF {
         paragraph4.add(gameCollectionHeader);
         paragraph4.add(space);
 
-        Table gameTable = new Table(6);
+        Table gameTable = new Table(7);
         gameTable.setWidth(UnitValue.createPercentValue(100));
         gameTable.addHeaderCell("Name");
         gameTable.addHeaderCell("Console");
@@ -132,6 +143,7 @@ public class PDF {
         gameTable.addHeaderCell("Genre");
         gameTable.addHeaderCell("Retailer");
         gameTable.addHeaderCell("Paid Price");
+        gameTable.addHeaderCell("Face Value");
 
         for(FinalGameCollectionTable finalGameCollectionTable : finalGameCollectionTables){
             gameTable.addCell(finalGameCollectionTable.getGameName());
@@ -141,6 +153,8 @@ public class PDF {
             gameTable.addCell(finalGameCollectionTable.getRetailerName());
             String priceString = finalGameCollectionTable.getGamePrice().toString();
             gameTable.addCell(priceString);
+            String faceString = finalGameCollectionTable.getFaceValue().toString();
+            gameTable.addCell(faceString);
 
         }
 

@@ -274,6 +274,8 @@ public class CollectionController extends Controller {
         String authorName = form.get("authorname");
         String bookshelf = form.get("bookshelf");
         int bookshelfId = Integer.parseInt(bookshelf);
+        String sfaceValue = form.get("facevalue");
+        BigDecimal faceValue = new BigDecimal(sfaceValue);
 
         books.setBookName(bookName);
         books.setBookPrice(bookPrice);
@@ -282,6 +284,7 @@ public class CollectionController extends Controller {
         books.setRetailerId(retailerId);
         books.setAuthorName(authorName);
         books.setBookshelfId(bookshelfId);
+        books.setFaceValue(faceValue);
         db.em().persist(books);
 
         TypedQuery<BookType> bookTypeQuery = db.em().createQuery(
@@ -350,6 +353,8 @@ public class CollectionController extends Controller {
         int retailerId = Integer.parseInt(retailer);
         String shelf = form.get("bookshelf");
         int bookshelfId = Integer.parseInt(shelf);
+        String sfaceValue = form.get("facevalue");
+        BigDecimal faceValue = new BigDecimal(sfaceValue);
 
         discs.setDiscName(discName);
         discs.setDiscPrice(discPrice);
@@ -357,6 +362,7 @@ public class CollectionController extends Controller {
         discs.setDiscGenreId(genreId);
         discs.setRetailerId(retailerId);
         discs.setBookshelfId(bookshelfId);
+        discs.setFaceValue(faceValue);
         db.em().persist(discs);
 
         TypedQuery<DiscGenre> genreQuery = db.em().createQuery(
@@ -432,6 +438,8 @@ public class CollectionController extends Controller {
         int bookshelfId = Integer.parseInt(shelf);
         String console = form.get("consolename");
         int consoleId = Integer.parseInt(console);
+        String sfaceValue = form.get("facevalue");
+        BigDecimal faceValue = new BigDecimal(sfaceValue);
 
         games.setGameName(gameName);
         games.setGamePrice(gamePrice);
@@ -440,6 +448,7 @@ public class CollectionController extends Controller {
         games.setRetailerId(retailerId);
         games.setBookshelfId(bookshelfId);
         games.setConsoleId(consoleId);
+        games.setFaceValue(faceValue);
         db.em().persist(games);
 
         TypedQuery<GameGenre> genreQuery = db.em().createQuery(
@@ -505,6 +514,8 @@ public class CollectionController extends Controller {
         String shelf = form.get("bookshelf");
         int bookshelfId = Integer.parseInt(shelf);
         String artistName = form.get("artistname");
+        String sfaceValue = form.get("facevalue");
+        BigDecimal faceValue = new BigDecimal(sfaceValue);
 
         albums.setAlbumName(albumName);
         albums.setAlbumPrice(albumPrice);
@@ -512,6 +523,7 @@ public class CollectionController extends Controller {
         albums.setRetailerId(retailerId);
         albums.setBookshelfId(bookshelfId);
         albums.setArtistName(artistName);
+        albums.setFaceValue(faceValue);
         db.em().persist(albums);
 
         TypedQuery<AlbumGenre> genreQuery = db.em().createQuery(
